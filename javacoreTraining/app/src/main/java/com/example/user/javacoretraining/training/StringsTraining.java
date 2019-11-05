@@ -21,8 +21,13 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
-        return "";
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (i % 2 != 0) {
+                result.append(text.charAt(i));
+            }
+        }
+        return result.toString();
     }
 
     /**
@@ -36,8 +41,25 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-        //TODO: implement it
-        return new int[]{};
+        int counter = 0;
+        StringBuilder numbers = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(text.length() - 1) == text.charAt(i)) {
+                counter++;
+                numbers.append(i);
+            }
+        }
+        int[] array;
+        if (counter > 0) {
+            array = new int[counter - 1];
+            for (int i = 0; i < array.length; i++) {
+                array[i] = Integer.valueOf(numbers.substring(i, i + 1));
+                System.out.print(array[i] + " ");
+            }
+        } else {
+            array = new int[0];
+        }
+        return array;
     }
 
     /**
@@ -48,8 +70,18 @@ public class StringsTraining {
      * @return количество цифр в строке
      */
     public int getNumbersCount(String text) {
-        //TODO: implement it
-        return 0;
+        int[] alphabet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        int counter = 0;
+        for (int i = 0; i < text.length(); i++) {
+            for (int value : alphabet) {
+                if (text.charAt(i) == value) {
+                    counter++;
+                    break;
+                }
+            }
+        }
+        System.out.println(counter);
+        return counter;
     }
 
     /**
@@ -60,7 +92,17 @@ public class StringsTraining {
      * @return текст, где цыфры заменены словами
      */
     public String replaceAllNumbers(String text) {
-        //TODO: implement it
+        int[] alphabet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        String[] alphabet1 = {"zero",
+                "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        for (int i = 0; i < text.length(); i++) {
+            for (int j = 0; j < alphabet.length; j++) {
+                if (text.charAt(i) == alphabet[j]) {
+                    text = text.replaceAll(String.valueOf(text.charAt(i)), alphabet1[j]);
+                    break;
+                }
+            }
+        }
         return text;
     }
 
@@ -72,8 +114,13 @@ public class StringsTraining {
      * @return измененная строка
      */
     public String capitalReverse(String text) {
-        //TODO: implement it
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isUpperCase(text.charAt(i))) {
+                text = text.replace(text.charAt(i), Character.toLowerCase(text.charAt(i)));
+            } else {
+                text = text.replace(text.charAt(i), Character.toUpperCase(text.charAt(i)));
+            }
+        }
         return text;
     }
-
 }
