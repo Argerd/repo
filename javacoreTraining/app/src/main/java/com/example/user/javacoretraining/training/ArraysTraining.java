@@ -19,7 +19,15 @@ public class ArraysTraining {
      * @return отсортированный массив
      */
     public int[] sort(int[] valuesArray) {
-        //TODO: implement it
+        for (int i = 0; i < valuesArray.length; i++) {
+            for (int j = i + 1; j < valuesArray.length; j++) {
+                if (valuesArray[i] > valuesArray[j]) {
+                    int temp = valuesArray[i];
+                    valuesArray[i] = valuesArray[j];
+                    valuesArray[j] = temp;
+                }
+            }
+        }
         return valuesArray;
     }
 
@@ -32,8 +40,17 @@ public class ArraysTraining {
      * @return максимальное число или 0
      */
     public int maxValue(int... values) {
-        //TODO: implement it
-        return 0;
+        int value = 0;
+        if (values == null) {
+            return value;
+        } else {
+            for (int item : values) {
+                if (item > value) {
+                    value = item;
+                }
+            }
+        }
+        return value;
     }
 
     /**
@@ -44,8 +61,11 @@ public class ArraysTraining {
      * @return входящий массив в обратном порядке
      */
     public int[] reverse(int[] array) {
-        //TODO: implement it
-        return new int[]{};
+        int[] reverse = new int[array.length];
+        for (int i = 0; i < reverse.length; i++) {
+            reverse[i] = array[array.length - i];
+        }
+        return reverse;
     }
 
     /**
@@ -59,8 +79,25 @@ public class ArraysTraining {
      * @return массив из чисел Фибоначчи
      */
     public int[] fibonacciNumbers(int numbersCount) {
-        //TODO: implement it
-        return new int[]{};
+        if (numbersCount < 1) {
+            return new int[]{};
+        } else {
+            int[] array = new int[numbersCount];
+            int n1 = 1;
+            int n2 = 1;
+            int n3;
+            for (int i = 0; i < array.length; i++) {
+                if (i == 0 || i == 1) {
+                    array[i] = 1;
+                } else {
+                    n3 = n1 + n2;
+                    n1 = n2;
+                    n2 = n3;
+                    array[i] = n3;
+                }
+            }
+            return array;
+        }
     }
 
     /**
@@ -72,7 +109,22 @@ public class ArraysTraining {
      * элементов
      */
     public int maxCountSymbol(int[] array) {
-        //TODO: implement it
-        return 0;
+        array = sort(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+        int counter = 0;
+        int max = 0;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] == array[i + 1]) {
+                counter++;
+            } else {
+                if (max < counter) {
+                    max = counter + 1;
+                }
+            }
+        }
+        return max;
     }
 }
