@@ -63,7 +63,10 @@ public class ArraysTraining {
     public int[] reverse(int[] array) {
         int[] reverse = new int[array.length];
         for (int i = 0; i < reverse.length; i++) {
-            reverse[i] = array[array.length - i];
+            reverse[i] = array[array.length - i - 1];
+        }
+        for (int i = 0; i < reverse.length; i++) {
+            System.out.println(reverse[i] + " ");
         }
         return reverse;
     }
