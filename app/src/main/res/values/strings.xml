@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">repo</string>
+    <string name="app_name">Хочу помочь</string>
+
+    <string name="splash_activity_text">Загрузка…</string>
 </resources>
