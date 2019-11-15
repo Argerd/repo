@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 public class SplashActivity extends AppCompatActivity {
-    private static final String TAG = "Lol";
-
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
