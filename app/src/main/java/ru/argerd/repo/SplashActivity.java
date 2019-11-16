@@ -18,9 +18,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ProgressBar progressBar = findViewById(R.id.splash_progress_bar);
-        progressBar.setVisibility(ProgressBar.VISIBLE);
-
         startActivity(new Intent(SplashActivity.this, ProfileActivity.class));
     }
 }
