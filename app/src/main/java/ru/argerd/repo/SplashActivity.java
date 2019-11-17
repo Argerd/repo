@@ -2,7 +2,6 @@ package ru.argerd.repo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +17,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        startActivity(new Intent(SplashActivity.this, ProfileActivity.class));
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
     }
 }

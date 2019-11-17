@@ -8,6 +8,6 @@
     <dimen name="logo_mss_width">116dp</dimen>
     <dimen name="logo_mss_height">16dp</dimen>
     
-    <!--ProfileActivity-->
+    <!--MainActivity-->
 
 </resources>

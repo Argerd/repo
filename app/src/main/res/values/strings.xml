@@ -2,4 +2,7 @@
     <string name="app_name">Хочу помочь</string>
 
     <string name="splash_activity_text">Загрузка…</string>
+
+    <!--ToolbarTexts-->
+    <string name="toolbar_profile">Профиль</string>
 </resources>
