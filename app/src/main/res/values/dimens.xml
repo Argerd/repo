@@ -7,7 +7,7 @@
     <dimen name="splash_progress_bar_height">38dp</dimen>
     <dimen name="logo_mss_width">116dp</dimen>
     <dimen name="logo_mss_height">16dp</dimen>
-    
-    <!--MainActivity-->
+
+    <!--ProfileFragment-->
 
 </resources>

@@ -3,6 +3,7 @@
 
     <string name="splash_activity_text">Загрузка…</string>
 
-    <!--ToolbarTexts-->
+    <!--EditToolbarProfile-->
     <string name="toolbar_profile">Профиль</string>
+    <string name="toolbar_edit_menu">Редактировать</string>
 </resources>
