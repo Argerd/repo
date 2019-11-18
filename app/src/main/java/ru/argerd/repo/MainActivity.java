@@ -1,12 +1,10 @@
 package ru.argerd.repo;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
-import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity {
     @Override

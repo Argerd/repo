@@ -9,5 +9,8 @@
     <dimen name="logo_mss_height">16dp</dimen>
 
     <!--ProfileFragment-->
-
+    <dimen name="photo_profile_height">220dp</dimen>
+    <dimen name="side_of_photo_friend">48dp</dimen>
+    <dimen name="logout_button_width">166dp</dimen>
+    <dimen name="logout_button_height">36dp</dimen>
 </resources>

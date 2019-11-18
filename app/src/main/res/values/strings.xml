@@ -3,7 +3,12 @@
 
     <string name="splash_activity_text">Загрузка…</string>
 
-    <!--EditToolbarProfile-->
+    <!-- ProfileFragment-->
     <string name="toolbar_profile">Профиль</string>
     <string name="toolbar_edit_menu">Редактировать</string>
+    <string name="date_of_birthday_hint">Дата рождения</string>
+    <string name="field_of_service_hint">Сфера деятельности</string>
+    <string name="receive_push_notification_text">Получать push-уведомления</string>
+    <string name="your_friends_hint">Ваши друзья</string>
+    <string name="logout">Выйти из аккаунта</string>
 </resources>
