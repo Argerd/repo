@@ -1,26 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/help_button"
+        android:layout_width="@dimen/help_button_size"
+        android:layout_height="@dimen/help_button_size"
+        android:layout_marginStart="159dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginBottom="22dp"
+        android:background="@color/melon"
+        android:backgroundTint="@color/melon"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="center"
+        android:src="@drawable/heart"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/help_button_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/melon" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="153dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="43.5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/shadow"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_navigation_height"
+        android:background="@drawable/navigation_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <ImageView
+            android:id="@+id/news_image"
+            android:layout_width="23dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_list_40dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/news_item_title"
+            style="@style/TextStyle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6.5dp"
+            android:text="@string/news"
+            android:textColor="@color/turtle_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news_image" />
+
+        <ImageView
+            android:id="@+id/search_image"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/news_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_search_40dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/search_item_title"
+            style="@style/TextStyle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/search"
+            app:layout_constraintStart_toEndOf="@+id/news_item_title"
+            app:layout_constraintTop_toBottomOf="@+id/search_image" />
+
+        <TextView
+            android:id="@+id/help_item_title"
+            style="@style/TextStyle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="35dp"
+            android:text="@string/help"
+            app:layout_constraintStart_toEndOf="@+id/search_item_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/history_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="104dp"
+            app:layout_constraintStart_toEndOf="@+id/search_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_history_40dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/history_item"
+            style="@style/TextStyle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/history"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/help_item_title" />
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            app:layout_constraintStart_toEndOf="@+id/history_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/profile_item"
+            style="@style/TextStyle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/history_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,7 @@
     <!--BottomNavigationView-->
     <string name="news">Новости</string>
     <string name="search">Поиск</string>
+    <string name="help">Помочь</string>
+    <string name="history">История</string>
+    <string name="profile">Профиль</string>
 </resources>
