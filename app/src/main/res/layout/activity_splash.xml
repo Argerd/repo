@@ -38,6 +38,7 @@
 
     <TextView
         android:id="@+id/splash_load_text"
+        style="@style/TextStyle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="146dp"
@@ -45,7 +46,6 @@
         android:layout_marginEnd="146dp"
         android:layout_marginBottom="228dp"
         android:text="@string/splash_activity_text"
-        style="@style/TextStyle3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,6 +8,9 @@
     <dimen name="logo_mss_width">116dp</dimen>
     <dimen name="logo_mss_height">16dp</dimen>
 
+    <!--MainActivity-->
+    <dimen name="bottom_navigation_height">54dp</dimen>
+
     <!--ProfileFragment-->
     <dimen name="photo_profile_height">220dp</dimen>
     <dimen name="side_of_photo_friend">48dp</dimen>

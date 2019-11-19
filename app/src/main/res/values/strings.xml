@@ -11,4 +11,8 @@
     <string name="receive_push_notification_text">Получать push-уведомления</string>
     <string name="your_friends_hint">Ваши друзья</string>
     <string name="logout">Выйти из аккаунта</string>
+
+    <!--BottomNavigationView-->
+    <string name="news">Новости</string>
+    <string name="search">Поиск</string>
 </resources>

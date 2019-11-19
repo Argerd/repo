@@ -8,6 +8,7 @@
     <color name="turtle_green">#7db354</color>
     <color name="black_70">#b3000000</color>
     <color name="white">#ffffff</color>
-    <color name="black__87">#de000000</color>
-    <color name="black__38">#61000000</color>
+    <color name="black_87">#de000000</color>
+    <color name="black_38">#61000000</color>
+    <color name="black_40">#66000000</color>
 </resources>
