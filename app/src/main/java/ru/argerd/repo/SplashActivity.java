@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SplashActivity extends AppCompatActivity {
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -17,6 +20,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(() -> startActivity(new Intent(SplashActivity.this, MainActivity.class)));
+            }
+        };
+        timer.schedule(timerTask, 3000);
     }
 }
