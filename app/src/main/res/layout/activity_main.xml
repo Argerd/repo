@@ -50,13 +50,13 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/botton_navigation_view"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/botton_navigation_view"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_navigation_height"
         android:clipChildren="true"
@@ -66,113 +66,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation_bottom_menu" />
-
-    <!-- <androidx.constraintlayout.widget.ConstraintLayout
-         android:id="@+id/constraintLayout"
-         android:layout_width="match_parent"
-         android:layout_height="@dimen/bottom_navigation_height"
-         android:background="@drawable/navigation_bottom"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent">
-
-         <ImageView
-             android:id="@+id/news_image"
-             android:layout_width="23dp"
-             android:layout_height="17dp"
-             android:layout_marginStart="16dp"
-             android:layout_marginTop="11.5dp"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             app:srcCompat="@drawable/ic_news_40dp"
-             tools:ignore="ContentDescription" />
-
-         <TextView
-             android:id="@+id/news_item_title"
-             style="@style/TextStyle4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="6dp"
-             android:layout_marginTop="6.5dp"
-             android:text="@string/news"
-             android:textColor="@color/turtle_green"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toBottomOf="@+id/news_image" />
-
-         <ImageView
-             android:id="@+id/search_image"
-             android:layout_width="23dp"
-             android:layout_height="23dp"
-             android:layout_marginStart="40dp"
-             android:layout_marginTop="8dp"
-             app:layout_constraintStart_toEndOf="@+id/news_image"
-             app:layout_constraintTop_toTopOf="parent"
-             app:srcCompat="@drawable/ic_search_40dp"
-             tools:ignore="ContentDescription" />
-
-         <TextView
-             android:id="@+id/search_item_title"
-             style="@style/TextStyle4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="23dp"
-             android:layout_marginTop="4dp"
-             android:text="@string/search"
-             app:layout_constraintStart_toEndOf="@+id/news_item_title"
-             app:layout_constraintTop_toBottomOf="@+id/search_image" />
-
-         <TextView
-             android:id="@+id/help_item_title"
-             style="@style/TextStyle4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="32dp"
-             android:layout_marginTop="35dp"
-             android:text="@string/help"
-             app:layout_constraintStart_toEndOf="@+id/search_item_title"
-             app:layout_constraintTop_toTopOf="parent" />
-
-         <ImageView
-             android:id="@+id/history_image"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-             android:layout_marginStart="104dp"
-             app:layout_constraintStart_toEndOf="@+id/search_image"
-             app:layout_constraintTop_toTopOf="parent"
-             app:srcCompat="@drawable/ic_history_40dp"
-             tools:ignore="ContentDescription" />
-
-         <TextView
-             android:id="@+id/history_item"
-             style="@style/TextStyle4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="22dp"
-             android:layout_marginBottom="3dp"
-             android:text="@string/history"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintStart_toEndOf="@+id/help_item_title" />
-
-         <ImageView
-             android:id="@+id/profile_image"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-             android:layout_marginStart="28dp"
-             app:layout_constraintStart_toEndOf="@+id/history_image"
-             app:layout_constraintTop_toTopOf="parent"
-             app:srcCompat="@drawable/ic_profile"
-             tools:ignore="ContentDescription" />
-
-         <TextView
-             android:id="@+id/profile_item"
-             style="@style/TextStyle4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="20dp"
-             android:layout_marginBottom="3dp"
-             android:text="@string/profile"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintStart_toEndOf="@+id/history_item" />
-     </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
