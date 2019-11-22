@@ -5,20 +5,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = ProfileFragment.class.toString();
+    private static final int REQUEST_PHOTO = 1;
 
     private Toolbar toolbar;
     private AdapterFriends adapter;
     private RecyclerView recyclerFriends;
+    private ImageView photoProfile;
 
     static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -46,6 +50,21 @@ public class ProfileFragment extends Fragment {
         recyclerFriends.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerFriends.setAdapter(adapter);
 
+        photoProfile = view.findViewById(R.id.photo_profile);
+        photoProfile.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.photo_profile:
+                Log.d(TAG, "photoProfileClicked");
+                DialogFragment dialogFragment = new PhotoOfProfileDialogFragment();
+                dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
+                if (getFragmentManager() != null)
+                    dialogFragment.show(getFragmentManager(), dialogFragment.getClass().getName());
+        }
     }
 }

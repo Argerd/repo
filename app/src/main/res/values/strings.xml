@@ -18,4 +18,9 @@
     <string name="help">Помочь</string>
     <string name="history">История</string>
     <string name="profile">Профиль</string>
+
+    <!--PhotoOfProfileDialogFragment-->
+    <string name="choose_phtot">Выбрать фото</string>
+    <string name="create_photo">Сделать снимок</string>
+    <string name="delete">Удалить</string>
 </resources>
