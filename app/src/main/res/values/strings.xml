@@ -1,6 +1,5 @@
 <resources>
     <string name="authority">ru.argerd.repo</string>
-    <string name="files_paths">/data/data/ru.argerd.repo/files/</string>
 
     <string name="app_name">Хочу помочь</string>
 

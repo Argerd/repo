@@ -76,8 +76,8 @@ public class PhotoOfProfileDialogFragment extends DialogFragment implements View
                 break;
             case R.id.delete_text:
                 Log.d(TAG, "DeleteClicked");
-                File file = new File(getResources().getString(R.string.files_paths) +
-                        getResources().getString(R.string.file_name_for_profile));
+                File file = new File(Objects.requireNonNull(getContext()).getFilesDir()
+                        + "/" + getResources().getString(R.string.file_name_for_profile));
                 if (file.delete()) {
                     Objects.requireNonNull(getTargetFragment()).onActivityResult(
                             getTargetRequestCode(), Activity.RESULT_OK,

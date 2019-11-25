@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = ProfileFragment.class.toString();
@@ -59,7 +60,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         photoProfile = view.findViewById(R.id.photo_profile);
         photoProfile.setOnClickListener(this);
         resources = getResources();
-        File file = new File(resources.getString(R.string.files_paths) +
+        File file = new File(getContext().getFilesDir() + "/" +
                 resources.getString(R.string.file_name_for_profile));
         if (file.exists()) {
             photoProfile.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
@@ -88,7 +89,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 case PhotoOfProfileDialogFragment.REQUEST_PHOTO_CAMERA:
                     Log.d(TAG, "after camera");
                     photoProfile.setImageBitmap(BitmapFactory.decodeFile(
-                            resources.getString(R.string.files_paths) +
+                            Objects.requireNonNull(getContext()).getFilesDir() + "/" +
                                     resources.getString(R.string.file_name_for_profile)));
                     break;
                 case REQUEST_PHOTO:
