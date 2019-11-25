@@ -1,5 +1,6 @@
 package ru.argerd.repo;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,13 +17,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class PhotoOfProfileDialogFragment extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "DialogFragment";
-    public static final int REQUEST_PHOTO_CAMERA = 1;
+    static final int REQUEST_PHOTO_CAMERA = 1;
+    private static final String TAG_DELETE_PHOTO = "Delete photo";
 
     @NonNull
     @Override
@@ -56,30 +59,35 @@ public class PhotoOfProfileDialogFragment extends DialogFragment implements View
                 Log.d(TAG, "CreatePhotoClicked");
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (intent.resolveActivity(
-                        Objects.requireNonNull(getActivity()).getPackageManager()) != null) {
-                    try {
-                        File tempFile = File.createTempFile("profile", ".jpg",
-                                getActivity().getFilesDir());
-                        Uri photo = FileProvider.getUriForFile(getActivity(),
-                                "ru.argerd.repo", tempFile);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photo);
-                        startActivityForResult(intent, REQUEST_PHOTO_CAMERA);
-                    } catch (IOException e) {
-                        Log.d(TAG, "Error", e);
-                    }
+                        Objects.requireNonNull(getContext()).getPackageManager()) != null) {
+                    File file = new File(Objects.requireNonNull(getContext()).getFilesDir(),
+                            getResources().getString(R.string.file_name_for_profile));
+                    Uri photo = FileProvider.getUriForFile(getContext(),
+                            getResources().getString(R.string.authority), file);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photo);
+                    Objects.requireNonNull(getTargetFragment())
+                            .startActivityForResult(intent, REQUEST_PHOTO_CAMERA);
+                    this.dismiss();
                 } else {
                     Log.d(TAG, "Activity not founded");
+                    Snackbar.make(v, R.string.not_founded_needed_application,
+                            Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.delete_text:
                 Log.d(TAG, "DeleteClicked");
+                File file = new File(getResources().getString(R.string.files_paths) +
+                        getResources().getString(R.string.file_name_for_profile));
+                if (file.delete()) {
+                    Objects.requireNonNull(getTargetFragment()).onActivityResult(
+                            getTargetRequestCode(), Activity.RESULT_OK,
+                            new Intent().putExtra(TAG_DELETE_PHOTO, true));
+                    this.dismiss();
+                } else {
+                    Log.d(TAG, "" + R.string.error_delete_file);
+                    Snackbar.make(v, R.string.error_delete_file, Snackbar.LENGTH_LONG).show();
+                }
                 break;
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Objects.requireNonNull(getTargetFragment()).onActivityResult(requestCode, resultCode, data);
     }
 }

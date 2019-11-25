@@ -2,6 +2,8 @@ package ru.argerd.repo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,20 +14,21 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = ProfileFragment.class.toString();
-    private static final int REQUEST_PHOTO = 1;
+    private static final int REQUEST_PHOTO = 11;
 
-    private Toolbar toolbar;
     private AdapterFriends adapter;
     private RecyclerView recyclerFriends;
     private ImageView photoProfile;
+    private Resources resources;
 
     static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -38,7 +41,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
 
-        toolbar = view.findViewById(R.id.edit_toolbar_profile);
+        Toolbar toolbar = view.findViewById(R.id.edit_toolbar_profile);
         toolbar.inflateMenu(R.menu.profile_toolbar_menu);
         toolbar.setOnMenuItemClickListener((item) -> {
             Log.d(TAG, "Menu in toolbar was pressed");
@@ -55,6 +58,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         photoProfile = view.findViewById(R.id.photo_profile);
         photoProfile.setOnClickListener(this);
+        resources = getResources();
+        File file = new File(resources.getString(R.string.files_paths) +
+                resources.getString(R.string.file_name_for_profile));
+        if (file.exists()) {
+            photoProfile.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+        }
 
         return view;
     }
@@ -77,7 +86,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case PhotoOfProfileDialogFragment.REQUEST_PHOTO_CAMERA:
-
+                    Log.d(TAG, "after camera");
+                    photoProfile.setImageBitmap(BitmapFactory.decodeFile(
+                            resources.getString(R.string.files_paths) +
+                                    resources.getString(R.string.file_name_for_profile)));
+                    break;
+                case REQUEST_PHOTO:
+                    photoProfile.setImageResource(R.drawable.image_man);
+                    break;
             }
         }
     }

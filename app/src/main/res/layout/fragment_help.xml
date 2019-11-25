@@ -22,4 +22,23 @@
             android:fontFamily="@font/officina_sans_extra_bold_scc"
             android:text="@string/help" />
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/choose_category_of_help_text"
+        style="@style/TextStyle5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/choose_category_of_help"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/help_toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="411dp"
+        android:layout_height="601dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_category_of_help_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

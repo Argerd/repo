@@ -1,4 +1,7 @@
 <resources>
+    <string name="authority">ru.argerd.repo</string>
+    <string name="files_paths">/data/data/ru.argerd.repo/files/</string>
+
     <string name="app_name">Хочу помочь</string>
 
     <string name="splash_activity_text">Загрузка…</string>
@@ -10,7 +13,6 @@
     <string name="your_friends_hint">Ваши друзья</string>
     <string name="logout">Выйти из аккаунта</string>
 
-
     <string name="news">Новости</string>
     <string name="search">Поиск</string>
     <string name="help">Помочь</string>
@@ -20,4 +22,10 @@
     <string name="choose_photo">Выбрать фото</string>
     <string name="create_photo">Сделать снимок</string>
     <string name="delete">Удалить</string>
+
+    <string name="choose_category_of_help">Выберите категорию помощи</string>
+    <string name="not_founded_needed_application">Нобходимое для этого приложение не
+        найдено</string>
+    <string name="file_name_for_profile">profile.jpg</string>
+    <string name="error_delete_file">Ошибка при удалении файла</string>
 </resources>
