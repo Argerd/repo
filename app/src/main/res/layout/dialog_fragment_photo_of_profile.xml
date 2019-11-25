@@ -28,7 +28,7 @@
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="sans-serif"
-        android:text="@string/choose_phtot"
+        android:text="@string/choose_photo"
         android:textColor="@color/black__87"
         android:textSize="22sp"
         android:textStyle="normal"

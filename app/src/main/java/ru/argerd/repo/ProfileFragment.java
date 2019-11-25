@@ -1,5 +1,7 @@
 package ru.argerd.repo;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,7 +39,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         setHasOptionsMenu(true);
 
         toolbar = view.findViewById(R.id.edit_toolbar_profile);
-        toolbar.inflateMenu(R.menu.edit_toolbar_menu);
+        toolbar.inflateMenu(R.menu.profile_toolbar_menu);
         toolbar.setOnMenuItemClickListener((item) -> {
             Log.d(TAG, "Menu in toolbar was pressed");
             return false;
@@ -65,6 +68,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
                 if (getFragmentManager() != null)
                     dialogFragment.show(getFragmentManager(), dialogFragment.getClass().getName());
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case PhotoOfProfileDialogFragment.REQUEST_PHOTO_CAMERA:
+
+            }
         }
     }
 }

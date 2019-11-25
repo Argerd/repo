@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/edit_toolbar_menu_item"
+        android:id="@+id/profile_toolbar_menu_item"
         android:title="@string/toolbar_edit_menu"
         android:icon="@drawable/icon_edit_toolbar_menu"
         app:showAsAction="always"/>

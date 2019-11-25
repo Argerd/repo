@@ -3,8 +3,6 @@
 
     <string name="splash_activity_text">Загрузка…</string>
 
-    <!-- ProfileFragment-->
-    <string name="toolbar_profile">Профиль</string>
     <string name="toolbar_edit_menu">Редактировать</string>
     <string name="date_of_birthday_hint">Дата рождения</string>
     <string name="field_of_service_hint">Сфера деятельности</string>
@@ -12,15 +10,14 @@
     <string name="your_friends_hint">Ваши друзья</string>
     <string name="logout">Выйти из аккаунта</string>
 
-    <!--BottomNavigationView-->
+
     <string name="news">Новости</string>
     <string name="search">Поиск</string>
     <string name="help">Помочь</string>
     <string name="history">История</string>
     <string name="profile">Профиль</string>
 
-    <!--PhotoOfProfileDialogFragment-->
-    <string name="choose_phtot">Выбрать фото</string>
+    <string name="choose_photo">Выбрать фото</string>
     <string name="create_photo">Сделать снимок</string>
     <string name="delete">Удалить</string>
 </resources>
