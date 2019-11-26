@@ -1,4 +1,4 @@
-package ru.argerd.repo;
+package ru.argerd.repo.profileFragment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,12 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import ru.argerd.repo.R;
+
 public class AdapterFriends extends RecyclerView.Adapter {
     private Context context;
     private int[] photos;
     private String[] names;
 
-    public AdapterFriends(int[] photos, String[] names, Context context) {
+    AdapterFriends(int[] photos, String[] names, Context context) {
         this.photos = photos;
         this.names = names;
         this.context = context;

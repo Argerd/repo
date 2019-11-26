@@ -13,9 +13,9 @@
         android:title="@string/search" />
 
     <item
-        android:id="@+id/empty_item"
-        android:enabled="false"
-        android:title="" />
+        android:id="@+id/help_item"
+        android:enabled="true"
+        android:title="@string/help" />
     <item
         android:id="@+id/item_history"
         android:enabled="true"

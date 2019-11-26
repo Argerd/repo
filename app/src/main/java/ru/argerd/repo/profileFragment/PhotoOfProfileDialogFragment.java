@@ -1,4 +1,4 @@
-package ru.argerd.repo;
+package ru.argerd.repo.profileFragment;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -21,6 +21,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.util.Objects;
+
+import ru.argerd.repo.R;
 
 public class PhotoOfProfileDialogFragment extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "DialogFragment";

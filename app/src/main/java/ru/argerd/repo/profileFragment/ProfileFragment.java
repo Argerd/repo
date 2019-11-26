@@ -1,4 +1,4 @@
-package ru.argerd.repo;
+package ru.argerd.repo.profileFragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.Objects;
 
+import ru.argerd.repo.R;
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = ProfileFragment.class.toString();
     private static final int REQUEST_PHOTO = 11;
@@ -30,10 +32,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerFriends;
     private ImageView photoProfile;
     private Resources resources;
-
-    static ProfileFragment newInstance() {
-        return new ProfileFragment();
-    }
 
     @Nullable
     @Override
