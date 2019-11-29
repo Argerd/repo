@@ -12,7 +12,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
-
     private BottomNavigationView bottomNavigation;
     private NavController navController;
     private FloatingActionButton fab;
@@ -41,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.item_profile:
                     navController.navigate(R.id.profileFragment);
+                    break;
+                case R.id.search_item:
+                    navController.navigate(R.id.searchFragment);
                     break;
             }
 

@@ -14,4 +14,9 @@
         android:name="ru.argerd.repo.profileFragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ru.argerd.repo.searchFragments.SearchFragment"
+        android:label="fragmen_search"
+        tools:layout="@layout/fragmen_search" />
 </navigation>

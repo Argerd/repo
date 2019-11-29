@@ -27,4 +27,11 @@
         найдено</string>
     <string name="file_name_for_profile">profile.jpg</string>
     <string name="error_delete_file">Ошибка при удалении файла</string>
+
+    <string name="search_view_hint">Введите название организации</string>
+
+    <string name="by_events">По мероприятиям</string>
+    <string name="by_nko">По НКО</string>
+    <string name="search_results">Результаты поиска:</string>
+    <string name="keywords">Ключевые слова:</string>
 </resources>

@@ -77,5 +77,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/melon" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
