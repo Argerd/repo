@@ -34,4 +34,6 @@
     <string name="by_nko">По НКО</string>
     <string name="search_results">Результаты поиска:</string>
     <string name="keywords">Ключевые слова:</string>
+
+    <string name="error_write_to_file">Ошибка при записи в файл</string>
 </resources>

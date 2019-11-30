@@ -26,6 +26,7 @@ import ru.argerd.repo.R;
 
 public class PhotoOfProfileDialogFragment extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "DialogFragment";
+    static final int REQUEST_PHOTO_GALLERY = 2;
     static final int REQUEST_PHOTO_CAMERA = 1;
     private static final String TAG_DELETE_PHOTO = "Delete photo";
 
@@ -54,10 +55,19 @@ public class PhotoOfProfileDialogFragment extends DialogFragment implements View
     public void onClick(View v) {
         Log.d(TAG, "Something was clicked");
         switch (v.getId()) {
-            case R.id.photo_choose_text:
+            case R.id.photo_choose_text: {
                 Log.d(TAG, "PhotoChooseClicked");
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Objects.requireNonNull(getContext()).getFilesDir() + "/" +
+                                getResources().getString(R.string.file_name_for_profile));
+                Objects.requireNonNull(getTargetFragment())
+                        .startActivityForResult(intent, REQUEST_PHOTO_GALLERY);
+                this.dismiss();
                 break;
-            case R.id.create_photo_text:
+            }
+            case R.id.create_photo_text: {
                 Log.d(TAG, "CreatePhotoClicked");
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (intent.resolveActivity(
@@ -76,6 +86,7 @@ public class PhotoOfProfileDialogFragment extends DialogFragment implements View
                             Snackbar.LENGTH_LONG).show();
                 }
                 break;
+            }
             case R.id.delete_text:
                 Log.d(TAG, "DeleteClicked");
                 File file = new File(Objects.requireNonNull(getContext()).getFilesDir()
