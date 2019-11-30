@@ -1,0 +1,37 @@
+<resources>
+    <string name="authority">ru.argerd.repo</string>
+
+    <string name="app_name">Хочу помочь</string>
+
+    <string name="splash_activity_text">Загрузка…</string>
+
+    <string name="toolbar_edit_menu">Редактировать</string>
+    <string name="date_of_birthday_hint">Дата рождения</string>
+    <string name="field_of_service_hint">Сфера деятельности</string>
+    <string name="receive_push_notification_text">Получать push-уведомления</string>
+    <string name="your_friends_hint">Ваши друзья</string>
+    <string name="logout">Выйти из аккаунта</string>
+
+    <string name="news">Новости</string>
+    <string name="search">Поиск</string>
+    <string name="help">Помочь</string>
+    <string name="history">История</string>
+    <string name="profile">Профиль</string>
+
+    <string name="choose_photo">Выбрать фото</string>
+    <string name="create_photo">Сделать снимок</string>
+    <string name="delete">Удалить</string>
+
+    <string name="choose_category_of_help">Выберите категорию помощи</string>
+    <string name="not_founded_needed_application">Нобходимое для этого приложение не
+        найдено</string>
+    <string name="file_name_for_profile">profile.jpg</string>
+    <string name="error_delete_file">Ошибка при удалении файла</string>
+
+    <string name="search_view_hint">Введите название организации</string>
+
+    <string name="by_events">По мероприятиям</string>
+    <string name="by_nko">По НКО</string>
+    <string name="search_results">Результаты поиска:</string>
+    <string name="keywords">Ключевые слова:</string>
+</resources>
