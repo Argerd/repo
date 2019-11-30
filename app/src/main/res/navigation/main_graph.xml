@@ -19,4 +19,9 @@
         android:name="ru.argerd.repo.searchFragments.SearchFragment"
         android:label="fragmen_search"
         tools:layout="@layout/fragmen_search" />
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="ru.argerd.repo.newsFragment.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
 </navigation>

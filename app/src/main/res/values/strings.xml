@@ -36,4 +36,6 @@
     <string name="keywords">Ключевые слова:</string>
 
     <string name="error_write_to_file">Ошибка при записи в файл</string>
+
+    <string name="title_of_item_in_filter_menu">Фильтр</string>
 </resources>
