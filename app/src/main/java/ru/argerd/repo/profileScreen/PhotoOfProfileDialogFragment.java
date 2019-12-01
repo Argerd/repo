@@ -1,4 +1,4 @@
-package ru.argerd.repo.profileFragment;
+package ru.argerd.repo.profileScreen;
 
 import android.app.Activity;
 import android.app.Dialog;

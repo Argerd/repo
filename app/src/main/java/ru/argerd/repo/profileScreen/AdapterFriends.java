@@ -1,4 +1,4 @@
-package ru.argerd.repo.profileFragment;
+package ru.argerd.repo.profileScreen;
 
 import android.content.Context;
 import android.view.LayoutInflater;

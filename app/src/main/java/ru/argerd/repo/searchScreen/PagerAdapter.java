@@ -1,4 +1,4 @@
-package ru.argerd.repo.searchFragments;
+package ru.argerd.repo.searchScreen;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

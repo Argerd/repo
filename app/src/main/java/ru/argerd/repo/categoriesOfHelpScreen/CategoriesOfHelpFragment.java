@@ -1,4 +1,4 @@
-package ru.argerd.repo.categoriesOfHelpFragment;
+package ru.argerd.repo.categoriesOfHelpScreen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package ru.argerd.repo.newsFragment;
+package ru.argerd.repo.newsScreen;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package ru.argerd.repo.categoriesOfHelpFragment;
+package ru.argerd.repo.categoriesOfHelpScreen;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -1,4 +1,4 @@
-package ru.argerd.repo.searchFragments;
+package ru.argerd.repo.searchScreen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
