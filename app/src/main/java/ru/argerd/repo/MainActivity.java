@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.searchFragment);
                     break;
                 case R.id.news_item:
-                    navController.navigate(R.id.newsFragment);
+                    navController.navigate(R.id.newsScreen);
                     break;
             }
 

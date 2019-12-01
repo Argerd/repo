@@ -19,9 +19,18 @@
         android:name="ru.argerd.repo.searchScreen.SearchFragment"
         android:label="fragmen_search"
         tools:layout="@layout/fragmen_search" />
-    <fragment
-        android:id="@+id/newsFragment"
-        android:name="ru.argerd.repo.newsScreen.NewsFragment"
-        android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+    <navigation
+        android:id="@+id/newsScreen"
+        app:startDestination="@id/newsFragment" >
+        <fragment
+            android:id="@+id/filterFragment"
+            android:name="ru.argerd.repo.filterScreen.FilterFragment"
+            android:label="fragment_filter"
+            tools:layout="@layout/fragment_filter" />
+        <fragment
+            android:id="@+id/newsFragment"
+            android:name="ru.argerd.repo.newsScreen.NewsFragment"
+            android:label="fragment_news"
+            tools:layout="@layout/fragment_news" />
+    </navigation>
 </navigation>
