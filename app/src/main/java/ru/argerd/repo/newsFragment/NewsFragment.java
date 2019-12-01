@@ -1,6 +1,7 @@
 package ru.argerd.repo.newsFragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.threeten.bp.LocalDate;
+
 import ru.argerd.repo.R;
 
 public class NewsFragment extends Fragment {
+    private static final String TAG = NewsFragment.class.getName();
+
     private RecyclerView recyclerView;
 
     @Nullable
@@ -32,6 +37,7 @@ public class NewsFragment extends Fragment {
                 "здоровья стала первой в области блаблбалбалабалабалаблабалабалабалба",
                 "Дубовская школа-интернат для детей с ограниченными возможностями " +
                         "здоровья стала первой в области блаблбалбалабалабалаблабалабалабалба"};
+
         recyclerView.setAdapter(new NewsAdapter(2, getContext(), photos, titles,
                 newsContent));
 
