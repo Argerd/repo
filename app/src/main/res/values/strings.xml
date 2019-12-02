@@ -38,4 +38,9 @@
     <string name="error_write_to_file">Ошибка при записи в файл</string>
 
     <string name="filter">Фильтр</string>
+    <string name="categories_of_help">Категории помощи:</string>
+    <string name="money_help">Деньгами</string>
+    <string name="things_help">Вещами</string>
+    <string name="prof_help">Проф. помощью</string>
+    <string name="volunteering_help">Волонтерством</string>
 </resources>
