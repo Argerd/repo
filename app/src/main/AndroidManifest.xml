@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".detailDescriptionScreen.DetailScreenActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:noHistory="true">
@@ -34,4 +35,5 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
     </application>
+
 </manifest>

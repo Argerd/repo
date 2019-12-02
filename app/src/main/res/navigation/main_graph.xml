@@ -32,5 +32,10 @@
             android:name="ru.argerd.repo.newsScreen.NewsFragment"
             android:label="fragment_news"
             tools:layout="@layout/fragment_news" />
+        <activity
+            android:id="@+id/detailScreenActivity"
+            android:name="ru.argerd.repo.detailDescriptionScreen.DetailScreenActivity"
+            android:label="activity_detail_screen"
+            tools:layout="@layout/activity_detail_screen" />
     </navigation>
 </navigation>

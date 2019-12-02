@@ -22,6 +22,6 @@ public class SplashActivity extends AppCompatActivity {
                 runOnUiThread(() -> startActivity(new Intent(SplashActivity.this, MainActivity.class)));
             }
         };
-        timer.schedule(timerTask, 3000);
+        timer.schedule(timerTask, 1000);
     }
 }
