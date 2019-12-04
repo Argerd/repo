@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import ru.argerd.repo.R;
 import ru.argerd.repo.detailDescriptionScreen.DetailScreenActivity;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Holder> {
+class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Holder> {
     private int count;
     private Context context;
     private int[] photos;

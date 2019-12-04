@@ -43,4 +43,8 @@
     <string name="things_help">Вещами</string>
     <string name="prof_help">Проф. помощью</string>
     <string name="volunteering_help">Волонтерством</string>
+
+    <string name="you_have_questions">У вас есть вопросы?</string>
+    <string name="write_me"><u>Напишите нам</u></string>
+    <string name="move_to_site"><u>Перейти на сайт организации</u></string>
 </resources>

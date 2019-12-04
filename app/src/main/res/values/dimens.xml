@@ -21,6 +21,10 @@
     <dimen name="logout_button_width">166dp</dimen>
     <dimen name="logout_button_height">36dp</dimen>
 
-    <!--Decorator-->
+    <!--DecoratorCategories-->
     <dimen name="margin_item">8dp</dimen>
+
+    <!--DecoratorOfPeople-->
+    <dimen name="margin_first">20dp</dimen>
+    <dimen name="margin_left">-5dp</dimen>
 </resources>

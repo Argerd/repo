@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.argerd.repo.R;
 
-public class AdapterFriends extends RecyclerView.Adapter {
+class AdapterFriends extends RecyclerView.Adapter {
     private Context context;
     private int[] photos;
     private String[] names;

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.argerd.repo.R;
 
-public class AdapterCategories extends RecyclerView.Adapter {
+class AdapterCategories extends RecyclerView.Adapter {
     private Context context;
     private int[] images;
     private String[] namesCategories;

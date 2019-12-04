@@ -13,17 +13,18 @@
         android:layout_marginStart="153dp"
         android:layout_marginEnd="153dp"
         android:layout_marginBottom="43.5dp"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/image_shadow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             app:srcCompat="@drawable/shadow"
             tools:ignore="ContentDescription" />
-
     </FrameLayout>
 
     <FrameLayout

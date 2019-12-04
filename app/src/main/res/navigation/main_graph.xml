@@ -8,7 +8,7 @@
         android:id="@+id/categoriesOfHelpFragment"
         android:name="ru.argerd.repo.categoriesOfHelpScreen.CategoriesOfHelpFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
+        tools:layout="@layout/fragment_categories_of_help" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.argerd.repo.profileScreen.ProfileFragment"
