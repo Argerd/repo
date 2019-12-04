@@ -7,27 +7,6 @@
     android:clipChildren="false">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="153dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginBottom="43.5dp"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/image_shadow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/shadow"
-            tools:ignore="ContentDescription" />
-    </FrameLayout>
-
-    <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -68,6 +47,7 @@
         android:backgroundTint="@color/melon"
         android:clickable="true"
         android:focusable="true"
+        android:outlineProvider="none"
         android:scaleType="center"
         android:src="@drawable/heart"
         app:borderWidth="0dp"
@@ -78,4 +58,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/melon" />
 
+    <ImageView
+        android:id="@+id/image_shadow"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="15dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/oval_for_bottom_navigation"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
