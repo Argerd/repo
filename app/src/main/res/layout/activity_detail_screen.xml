@@ -272,7 +272,6 @@
                 android:id="@+id/helping_things_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_marginBottom="@dimen/bottom_margin_for_images_for_help"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView12"
