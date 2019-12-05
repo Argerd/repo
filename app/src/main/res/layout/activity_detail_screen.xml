@@ -277,6 +277,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView12"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@drawable/ic_shirt"
                 tools:ignore="ContentDescription" />
 
@@ -301,7 +302,6 @@
                 android:layout_marginTop="30dp"
                 android:background="@color/light_grey_two"
                 android:elevation="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_content" />
@@ -356,7 +356,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/prof_help2_image"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/volunteer_image"
-                app:layout_constraintTop_toBottomOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@mipmap/separator_2"
                 tools:ignore="ContentDescription" />
 
@@ -368,7 +368,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/money_help2_image"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/prof_help2_image"
-                app:layout_constraintTop_toBottomOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@mipmap/separator_2"
                 tools:ignore="ContentDescription" />
 
@@ -380,7 +380,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/volunteer_image"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/helping_things_image"
-                app:layout_constraintTop_toBottomOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@mipmap/separator_2"
                 tools:ignore="ContentDescription" />
 
@@ -393,6 +393,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView10"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView12"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@drawable/ic_hands"
                 tools:ignore="ContentDescription" />
 
@@ -405,6 +406,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView11"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@drawable/ic_tools"
                 tools:ignore="ContentDescription" />
 
@@ -417,15 +419,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView11"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@drawable/ic_coins"
                 tools:ignore="ContentDescription" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.928" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
