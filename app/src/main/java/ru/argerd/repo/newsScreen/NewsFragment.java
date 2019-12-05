@@ -33,6 +33,8 @@ public class NewsFragment extends Fragment {
                 "Дубовская школа-интернат для детей с ограниченными возможностями " +
                         "здоровья стала первой в области блаблбалбалабалабалаблабалабалабалба"};
 
+        recyclerView.addItemDecoration(new Decorator(getResources()
+                .getDimensionPixelOffset(R.dimen.bottom_margin_news)));
         recyclerView.setAdapter(new NewsAdapter(2, getContext(), photos, titles,
                 newsContent));
 
