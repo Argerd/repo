@@ -26,5 +26,6 @@
 
     <!--DecoratorOfPeople-->
     <dimen name="margin_first">20dp</dimen>
+    <dimen name="margin_top_bottom">20dp</dimen>
     <dimen name="margin_left">-5dp</dimen>
 </resources>

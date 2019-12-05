@@ -47,4 +47,8 @@
     <string name="you_have_questions">У вас есть вопросы?</string>
     <string name="write_me"><u>Напишите нам</u></string>
     <string name="move_to_site"><u>Перейти на сайт организации</u></string>
+    <string name="helping_things">Помочь вещами</string>
+    <string name="become_volunteer">Стать волонтером</string>
+    <string name="prof_help2">Проф. помощь</string>
+    <string name="money_help2">Помочь деньгами</string>
 </resources>

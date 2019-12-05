@@ -43,6 +43,7 @@ public class DetailScreenActivity extends AppCompatActivity {
         Resources resources = getResources();
         listOfFriends.addItemDecoration(new Decorator(
                 resources.getDimension(R.dimen.margin_first),
+                resources.getDimension(R.dimen.margin_top_bottom),
                 resources.getDimension(R.dimen.margin_left)));
     }
 }

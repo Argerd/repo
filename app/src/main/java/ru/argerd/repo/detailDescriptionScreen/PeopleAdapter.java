@@ -43,7 +43,7 @@ class PeopleAdapter extends RecyclerView.Adapter {
                         R.layout.counter_item, parent, false
                 )) :
                 new Avatar(LayoutInflater.from(context).inflate(
-                        R.layout.avatar_people, parent, false
+                        R.layout.item_people_in_detail, parent, false
                 ));
     }
 
