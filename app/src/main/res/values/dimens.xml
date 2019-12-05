@@ -28,4 +28,8 @@
     <dimen name="margin_first">20dp</dimen>
     <dimen name="margin_top_bottom">20dp</dimen>
     <dimen name="margin_left">-5dp</dimen>
+
+    <!--CategoriesOfHelpScreen-->
+    <dimen name="bottom_margin_for_images_for_help">36dp</dimen>
+    <dimen name="top_margin_for_subtitle_imges_for_help">7dp</dimen>
 </resources>
