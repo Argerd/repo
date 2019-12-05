@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import ru.argerd.repo.R;
 
 public class CategoriesOfHelpFragment extends Fragment {
-    private RecyclerView recyclerCategories;
 
     @Nullable
     @Override
@@ -23,9 +22,8 @@ public class CategoriesOfHelpFragment extends Fragment {
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_of_help, null);
 
-        recyclerCategories = view.findViewById(R.id.recycler_categories);
+        RecyclerView recyclerCategories = view.findViewById(R.id.recycler_categories);
         recyclerCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
 
 
         int[] images = {R.drawable.ic_1, R.drawable.ic_2, R.drawable.ic_3, R.drawable.ic_4,

@@ -35,8 +35,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = ProfileFragment.class.toString();
     private static final int REQUEST_PHOTO = 11;
 
-    private AdapterFriends adapter;
-    private RecyclerView recyclerFriends;
     private ImageView photoProfile;
     private Resources resources;
     private View view;
@@ -58,8 +56,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         int[] photos = {R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3};
         String[] names = {"Виктор Кузнецов", "Евгений Александров", "Дмитрий Валерьевич"};
 
-        adapter = new AdapterFriends(photos, names, getActivity());
-        recyclerFriends = view.findViewById(R.id.recycler_friends);
+        AdapterFriends adapter = new AdapterFriends(photos, names, getActivity());
+        RecyclerView recyclerFriends = view.findViewById(R.id.recycler_friends);
         recyclerFriends.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerFriends.setAdapter(adapter);
 

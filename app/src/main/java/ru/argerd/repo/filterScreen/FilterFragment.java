@@ -14,7 +14,6 @@ import androidx.navigation.Navigation;
 import ru.argerd.repo.R;
 
 public class FilterFragment extends Fragment {
-    private Toolbar toolbar;
 
     @Nullable
     @Override
@@ -22,7 +21,7 @@ public class FilterFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filter, container, false);
 
-        toolbar = view.findViewById(R.id.filter_toolbar);
+        Toolbar toolbar = view.findViewById(R.id.filter_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener((back) -> {
             Navigation.findNavController(container).popBackStack();

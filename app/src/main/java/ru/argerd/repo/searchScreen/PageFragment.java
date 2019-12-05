@@ -17,8 +17,6 @@ public class PageFragment extends Fragment {
     private static final String ARG_PAGE = "ARG_PAGE";
     private String[] namesOfItems;
 
-    private RecyclerView listOfItems;
-
     static PageFragment newInstance(String[] strings) {
         Bundle bundle = new Bundle();
         bundle.putStringArray(ARG_PAGE, strings);
@@ -42,7 +40,7 @@ public class PageFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page, null);
 
-        listOfItems = view.findViewById(R.id.list_with_results);
+        RecyclerView listOfItems = view.findViewById(R.id.list_with_results);
         listOfItems.setLayoutManager(new LinearLayoutManager(getContext()));
         listOfItems.setAdapter(new ListAdapter(namesOfItems, getContext()));
 
