@@ -25,10 +25,7 @@ class NewsFragment : Fragment() {
         val photos = intArrayOf(R.drawable.news_1, R.drawable.news_2)
         val titles = arrayOf("Спонсоры отремонтируют школу-интернат",
                 "Спонсоры отремонтируют школу-интернат")
-        val newsContent = arrayOf("Дубовская школа-интернат для детей с ограниченными возможностями " +
-                "здоровья стала первой в области блаблбалбалабалабалаблабалабалабалба",
-                "Дубовская школа-интернат для детей с ограниченными возможностями " +
-                        "здоровья стала первой в области блаблбалбалабалабалаблабалабалабалба")
+        val newsContent = arrayOf("Д")
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)

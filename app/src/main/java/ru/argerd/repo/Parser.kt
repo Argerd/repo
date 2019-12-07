@@ -24,11 +24,7 @@ class Parser {
             return listOf()
         }
 
-        val list = Gson().fromJson<List<Category>>(json, categoriesType)
-
-        Log.d(TAG, "list size ${list.size}")
-
-        return list.toList()
+        return Gson().fromJson<List<Category>>(json, categoriesType)
     }
 
     fun getEvents(context: Context): List<Event> {
