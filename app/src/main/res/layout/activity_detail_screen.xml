@@ -144,7 +144,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/adress"
+                android:id="@+id/address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/adress"
+                app:layout_constraintTop_toBottomOf="@+id/address"
                 app:srcCompat="@drawable/ic_phone"
                 tools:ignore="ContentDescription" />
 
@@ -266,7 +266,7 @@
                 android:textColor="@color/leaf"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/event_content" />
 
             <ImageView
                 android:id="@+id/helping_things_image"
@@ -422,6 +422,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
                 app:srcCompat="@drawable/ic_coins"
                 tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/event_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/black_70"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

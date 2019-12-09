@@ -13,7 +13,7 @@ class Parser {
     private val categoriesType = object : TypeToken<List<Category>>() {}.type
     private val eventsType = object : TypeToken<List<Event>>() {}.type
 
-    fun getCategories(context: Context): List<Category> {
+    fun getCategories(context: Context): ArrayList<Category> {
         val json: String
         try {
             val inputStream = context.assets.open("2")
@@ -21,10 +21,10 @@ class Parser {
             Log.d(TAG, json)
         } catch (e: Exception) {
             Log.d(TAG, "Ошибка при парсинге категорий", e)
-            return listOf()
+            return arrayListOf()
         }
 
-        return Gson().fromJson<List<Category>>(json, categoriesType)
+        return Gson().fromJson<ArrayList<Category>>(json, categoriesType)
     }
 
     fun getEvents(context: Context): List<Event> {

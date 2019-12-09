@@ -1,6 +1,8 @@
 package ru.argerd.repo.model
 
-class Category {
-    var id: Int? = null
-    var name: String? = null
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Category(var id: Int?,
+                    var name: String?) : Parcelable

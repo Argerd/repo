@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.argerd.repo.model.Category
 import ru.argerd.repo.R
+import ru.argerd.repo.model.Category
 
-class AdapterFilter(
-        private val categories: List<Category>,
-        val editor: SharedPreferences.Editor
+internal class AdapterFilter(
+        private val categories: ArrayList<Category>,
+        private val editor: SharedPreferences.Editor?,
+        private val settings: List<String>?
 ) : RecyclerView.Adapter<AdapterFilter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -26,21 +27,32 @@ class AdapterFilter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val name = categories[position].name
+        var checked = false
+        settings?.let {
+            if (it.contains(name)) {
+                checked = true
+            }
+        }
         if (name != null) {
-            holder.bind(name)
+            holder.bind(name, checked)
         } else {
-            holder.bind("")
+            holder.bind("", checked)
         }
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    internal inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameOfCategories: TextView = itemView.findViewById(R.id.categories_name)
         private val switch: Switch = itemView.findViewById(R.id.switch_categories)
 
-        fun bind(nameOfCategories: String) {
+        fun bind(nameOfCategories: String, checked: Boolean) {
+            switch.isChecked = checked
             this.nameOfCategories.text = nameOfCategories
             switch.setOnCheckedChangeListener { _, isChecked ->
-                editor.putBoolean(nameOfCategories, isChecked)
+                if (isChecked) {
+                    editor?.putString(nameOfCategories, "")
+                } else {
+                    editor?.remove(nameOfCategories)
+                }
             }
         }
     }
