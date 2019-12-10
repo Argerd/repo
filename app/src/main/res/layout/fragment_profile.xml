@@ -47,6 +47,7 @@
                     android:id="@+id/photo_profile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/photo_profile_height"
+                    android:adjustViewBounds="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"

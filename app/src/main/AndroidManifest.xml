@@ -4,6 +4,7 @@
     package="ru.argerd.repo">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher_foreground"
@@ -12,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".detailDescriptionScreen.DetailScreenActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:noHistory="true">
@@ -21,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -33,4 +35,5 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
     </application>
+
 </manifest>

@@ -21,6 +21,18 @@
     <dimen name="logout_button_width">166dp</dimen>
     <dimen name="logout_button_height">36dp</dimen>
 
-    <!--Decorator-->
+    <!--DecoratorCategories-->
     <dimen name="margin_item">8dp</dimen>
+
+    <!--DecoratorOfPeople-->
+    <dimen name="margin_first">20dp</dimen>
+    <dimen name="margin_top_bottom">20dp</dimen>
+    <dimen name="margin_left">-5dp</dimen>
+
+    <!--CategoriesOfHelpScreen-->
+    <dimen name="bottom_margin_for_images_for_help">36dp</dimen>
+    <dimen name="top_margin_for_subtitle_imges_for_help">7dp</dimen>
+
+    <!--DecoratorNewsScreen-->
+    <dimen name="bottom_margin_news">32dp</dimen>
 </resources>

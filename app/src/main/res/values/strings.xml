@@ -34,4 +34,32 @@
     <string name="by_nko">По НКО</string>
     <string name="search_results">Результаты поиска:</string>
     <string name="keywords">Ключевые слова:</string>
+
+    <string name="error_write_to_file">Ошибка при записи в файл</string>
+
+    <string name="filter">Фильтр</string>
+    <string name="categories_of_help">Категории помощи:</string>
+    <string name="money_help">Деньгами</string>
+    <string name="things_help">Вещами</string>
+    <string name="prof_help">Проф. помощью</string>
+    <string name="volunteering_help">Волонтерством</string>
+
+    <string name="you_have_questions">У вас есть вопросы?</string>
+    <string name="write_me"><u>Напишите нам</u></string>
+    <string name="move_to_site"><u>Перейти на сайт организации</u></string>
+    <string name="helping_things">Помочь вещами</string>
+    <string name="become_volunteer">Стать волонтером</string>
+    <string name="prof_help2">Проф. помощь</string>
+    <string name="money_help2">Помочь деньгами</string>
+
+    <string-array name="left_variable">
+        <item>Остался</item>
+        <item>Осталось</item>
+    </string-array>
+
+    <string-array name="left_days_variable">
+        <item>день</item>
+        <item>дня</item>
+        <item>дней</item>
+    </string-array>
 </resources>
