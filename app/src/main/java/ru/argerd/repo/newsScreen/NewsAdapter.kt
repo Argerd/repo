@@ -13,6 +13,7 @@ import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
 
 private const val EVENT_EXTRA = "title"
+private const val DAYS_EXTRA = "days"
 
 internal class NewsAdapter(private val photo: Int,
                            internal var events: List<Event>)
@@ -56,6 +57,7 @@ internal class NewsAdapter(private val photo: Int,
         override fun onClick(v: View) {
             val bundle = Bundle()
             bundle.putParcelable(EVENT_EXTRA, event)
+            bundle.putString(DAYS_EXTRA, date.text.toString())
             Navigation.findNavController(super.itemView).navigate(R.id.detailScreenActivity, bundle)
         }
 

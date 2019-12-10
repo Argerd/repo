@@ -34,8 +34,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="21sp"
-            tools:text="Спонсоры отремонтируютаааамммммммммммммм" />
+            android:textSize="21sp" />
     </androidx.appcompat.widget.Toolbar>
 
 

@@ -10,6 +10,7 @@ import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
 
 private const val EVENT_EXTRA = "title"
+private const val DAYS_EXTRA = "days"
 
 class DetailScreenActivity : AppCompatActivity() {
     private var event: Event? = null
@@ -25,12 +26,11 @@ class DetailScreenActivity : AppCompatActivity() {
         event = intent.getParcelableExtra(EVENT_EXTRA)
         val detailsToolbarTitle: TextView = findViewById(R.id.details_toolbar_title)
         val titleEvent: TextView = findViewById(R.id.title_event)
-        val leftDays: TextView = findViewById(R.id.left_days)
         val subtitleEvent: TextView = findViewById(R.id.subtitle_event)
         val address: TextView = findViewById(R.id.address)
         val phonesNumbers: TextView = findViewById(R.id.phones_numbers)
         val eventContent: TextView = findViewById(R.id.event_content)
-        event?.let{
+        event?.let {
             detailsToolbarTitle.text = it.title
             titleEvent.text = it.title
             subtitleEvent.text = it.nameOfOrganization
@@ -38,10 +38,11 @@ class DetailScreenActivity : AppCompatActivity() {
             phonesNumbers.text = it.phones
             eventContent.text = it.content
         }
+        val leftDays: TextView = findViewById(R.id.left_days)
+        leftDays.text = intent.getStringExtra(DAYS_EXTRA)
 
         val photos = intArrayOf(R.drawable.photo_1, R.drawable.photo_2, R.drawable.photo_3,
                 R.drawable.photo_4, R.drawable.photo_5)
-
 
         val listOfFriends = findViewById<RecyclerView>(R.id.list_of_avatars)
 
