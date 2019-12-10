@@ -50,22 +50,6 @@ class NewsFragment : Fragment() {
 
         sharedPreferences = activity?.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
 
-        val toolbar: Toolbar = view.findViewById(R.id.news_toolbar)
-        toolbar.setOnMenuItemClickListener {
-            val bundle = Bundle()
-            bundle.putParcelableArrayList(ARG_CATEGORIES, listCategories)
-            container?.let {
-                Navigation.findNavController(it).navigate(R.id.filterFragment, bundle)
-            }
-            return@setOnMenuItemClickListener true
-        }
-
-        return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         settings = sharedPreferences?.all?.keys?.distinct()
 
         var counter = 0
@@ -107,5 +91,17 @@ class NewsFragment : Fragment() {
         }
 
         Log.d(TAG, "setting seize ${settings!!.size}")
+
+        val toolbar: Toolbar = view.findViewById(R.id.news_toolbar)
+        toolbar.setOnMenuItemClickListener {
+            val bundle = Bundle()
+            bundle.putParcelableArrayList(ARG_CATEGORIES, listCategories)
+            container?.let {
+                Navigation.findNavController(it).navigate(R.id.filterFragment, bundle)
+            }
+            return@setOnMenuItemClickListener true
+        }
+
+        return view
     }
 }
