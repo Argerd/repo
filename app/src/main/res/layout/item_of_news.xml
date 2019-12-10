@@ -85,19 +85,25 @@
             android:id="@+id/date_of_news"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:gravity="start"
+            app:layout_constraintBottom_toBottomOf="@+id/image_calendar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/image_calendar" />
 
         <ImageView
             android:id="@+id/image_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/date_of_news"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/date_of_news"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_calendar"
             tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>

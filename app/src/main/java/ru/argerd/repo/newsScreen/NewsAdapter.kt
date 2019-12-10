@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import org.threeten.bp.LocalDate
 import ru.argerd.repo.R
-import ru.argerd.repo.detailDescriptionScreen.DetailScreenActivity
 import ru.argerd.repo.model.Event
 
 private const val EVENT_EXTRA = "title"
@@ -37,6 +37,7 @@ internal class NewsAdapter(private val photo: Int,
         private val title: TextView = itemView.findViewById(R.id.title_news)
         private val newsContent: TextView = itemView.findViewById(R.id.news_content)
         private lateinit var event: Event
+        private val date: TextView = itemView.findViewById(R.id.date_of_news)
 
         init {
             photo.setOnClickListener(this)
@@ -49,12 +50,82 @@ internal class NewsAdapter(private val photo: Int,
             this.photo.setImageResource(photo)
             this.title.text = event.title
             this.newsContent.text = event.content
+            setDate()
         }
 
         override fun onClick(v: View) {
             val bundle = Bundle()
             bundle.putParcelable(EVENT_EXTRA, event)
             Navigation.findNavController(super.itemView).navigate(R.id.detailScreenActivity, bundle)
+        }
+
+        private fun setDate() {
+            event.date?.let {
+                val date = LocalDate.of(
+                        it.substringBefore("-").toInt(),
+                        it.substringAfterLast("-").toInt(),
+                        it.substringBeforeLast("-").substringAfter("-").toInt()
+                )
+                val currentDate = LocalDate.now()
+                if (date.year > currentDate.year) {
+                    val diff = (date.toEpochDay() - currentDate.toEpochDay()).toString()
+                    var result = if (diff == "1") {
+                        itemView.context.resources.getStringArray(R.array.left_variable)[0]
+                    } else {
+                        itemView.context.resources.getStringArray(R.array.left_variable)[1]
+                    }
+                    result += " $diff"
+                    result += " " + when (diff[diff.length - 1]) {
+                        '1' -> itemView.context.resources
+                                .getStringArray(R.array.left_days_variable)[0]
+                        '2', '3', '4' -> itemView.context.resources
+                                .getStringArray(R.array.left_days_variable)[1]
+                        else -> itemView.context.resources
+                                .getStringArray(R.array.left_days_variable)[2]
+                    }
+                    val currentDayOfMonth = currentDate.dayOfMonth
+                    val currentMonth = when (currentDate.month.toString()) {
+                        "JANUARY" -> "1"
+                        "FEBRUARY" -> "2"
+                        "MARCH" -> "3"
+                        "APRIL" -> "4"
+                        "MAY" -> "5"
+                        "JUNE" -> "6"
+                        "JULY" -> "7"
+                        "AUGUST" -> "8"
+                        "SEPTEMBER" -> "9"
+                        "OCTOBER" -> "10"
+                        "NOVEMBER" -> "11"
+                        "DECEMBER" -> "12"
+                        else -> "0"
+                    }
+                    val dayOfEvent = it.substringBeforeLast("-").substringAfter("-")
+                    val monthOfEvent = it.substringAfterLast("-")
+                    result += " " + "(" + currentDayOfMonth + "." + currentMonth +
+                            " - " + dayOfEvent + "." + monthOfEvent + ")"
+                    this.date.text = result
+                } else {
+                    val monthOfEvent = when (it.substringAfterLast("-")) {
+                        "1" -> "Январь"
+                        "2" -> "Февраль"
+                        "3" -> "Март"
+                        "4" -> "Апрель"
+                        "5" -> "Май"
+                        "6" -> "Июнь"
+                        "7" -> "Июль"
+                        "8" -> "Август"
+                        "9" -> "Сентябрь"
+                        "10" -> "Октябрь"
+                        "11" -> "Ноябрь"
+                        "12" -> "Декабрь"
+                        else -> "Январь"
+                    }
+                    val text = monthOfEvent + " " +
+                            it.substringBeforeLast("-").substringAfter("-") +
+                            ", " + it.substringBefore("-")
+                    this.date.text = text
+                }
+            }
         }
     }
 }

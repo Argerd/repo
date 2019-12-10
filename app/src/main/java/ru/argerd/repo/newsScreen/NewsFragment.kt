@@ -90,7 +90,7 @@ class NewsFragment : Fragment() {
             }
         }
 
-        Log.d(TAG, "setting seize ${settings!!.size}")
+        Log.d(TAG, "setting size ${settings!!.size}")
 
         val toolbar: Toolbar = view.findViewById(R.id.news_toolbar)
         toolbar.setOnMenuItemClickListener {

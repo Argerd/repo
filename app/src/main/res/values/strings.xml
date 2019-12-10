@@ -51,4 +51,15 @@
     <string name="become_volunteer">Стать волонтером</string>
     <string name="prof_help2">Проф. помощь</string>
     <string name="money_help2">Помочь деньгами</string>
+
+    <string-array name="left_variable">
+        <item>Остался</item>
+        <item>Осталось</item>
+    </string-array>
+
+    <string-array name="left_days_variable">
+        <item>день</item>
+        <item>дня</item>
+        <item>дней</item>
+    </string-array>
 </resources>
