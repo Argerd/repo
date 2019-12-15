@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_grey_two">
 
-    <androidx.appcompat.widget.Toolbar
+   <!-- <androidx.appcompat.widget.Toolbar
         android:id="@+id/search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/search_toolbar"
         app:srcCompat="@drawable/ic_mic"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription" />-->
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/fragment_tab"
@@ -52,7 +52,7 @@
         android:background="@color/turtle_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorColor="@color/macaroni_and_cheese"
         app:tabTextAppearance="@style/MyTabTextAppearance" />
 

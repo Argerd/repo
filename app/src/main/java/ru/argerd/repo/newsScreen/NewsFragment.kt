@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.argerd.repo.Parser
 import ru.argerd.repo.R
+import ru.argerd.repo.model.Category
 import ru.argerd.repo.model.Event
 
 private const val TAG = "NewsFragment"
@@ -25,6 +27,7 @@ class NewsFragment : Fragment() {
     private val photo = R.drawable.news_1
     private val parser = Parser()
 
+    private var listCategories: ArrayList<Category>? = null
     private var sharedPreferences: SharedPreferences? = null
     private var settings: List<String>? = null
     private var validEvents: MutableList<Event> = mutableListOf()
@@ -43,7 +46,7 @@ class NewsFragment : Fragment() {
             addItemDecoration(Decorator(resources.getDimensionPixelOffset(R.dimen.bottom_margin_news)))
         }
 
-        val listCategories = context?.let { parser.getCategories(it) }
+        listCategories = context?.let { parser.getCategories(it) }
         context?.let {
             listEvents = parser.getEvents(it)
         }
@@ -92,14 +95,20 @@ class NewsFragment : Fragment() {
 
         Log.d(TAG, "setting size ${settings!!.size}")
 
-        val toolbar: Toolbar = view.findViewById(R.id.news_toolbar)
-        toolbar.setOnMenuItemClickListener {
-            val bundle = Bundle()
-            bundle.putParcelableArrayList(ARG_CATEGORIES, listCategories)
-            container?.let {
-                Navigation.findNavController(it).navigate(R.id.filterFragment, bundle)
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+        activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.news)
+        toolbar?.apply {
+            menu.clear()
+            inflateMenu(R.menu.filter_of_news_menu)
+            setOnMenuItemClickListener {
+                val bundle = Bundle()
+                menu.clear()
+                bundle.putParcelableArrayList(ARG_CATEGORIES, listCategories)
+                container?.let {
+                    Navigation.findNavController(it).navigate(R.id.filterFragment, bundle)
+                }
+                return@setOnMenuItemClickListener true
             }
-            return@setOnMenuItemClickListener true
         }
 
         return view
