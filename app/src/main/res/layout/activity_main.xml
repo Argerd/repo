@@ -6,12 +6,52 @@
     android:layout_height="match_parent"
     android:clipChildren="false">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            style="@style/TextStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/officina_sans_extra_bold_scc" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.ferfalk.simplesearchview.SimpleSearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="16dp"
+        android:hint="@string/search_view_hint"
+        android:visibility="gone"
+        app:searchBackground="@drawable/rectangle_for_search_view"
+        app:backIconTint="@color/black_60"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:searchBackIcon="@drawable/ic_search_for_toolbar"
+        app:voiceSearch="true" />
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <fragment
             android:id="@+id/nav_host_fragment"
@@ -40,8 +80,6 @@
         android:id="@+id/help_button"
         android:layout_width="@dimen/help_button_size"
         android:layout_height="@dimen/help_button_size"
-        android:layout_marginStart="159dp"
-        android:layout_marginEnd="159dp"
         android:layout_marginBottom="22dp"
         android:background="@color/melon"
         android:backgroundTint="@color/melon"

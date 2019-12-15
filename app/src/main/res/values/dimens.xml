@@ -35,4 +35,6 @@
 
     <!--DecoratorNewsScreen-->
     <dimen name="bottom_margin_news">32dp</dimen>
+
+    <dimen name="searchViewTextSize">14sp</dimen>
 </resources>

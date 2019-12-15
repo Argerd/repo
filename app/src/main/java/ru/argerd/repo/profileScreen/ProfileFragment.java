@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,15 +47,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
 
-        Toolbar toolbar = view.findViewById(R.id.edit_toolbar_profile);
-        toolbar.inflateMenu(R.menu.profile_toolbar_menu);
-        toolbar.setOnMenuItemClickListener((item) -> {
-            Log.d(TAG, "Menu in toolbar was pressed");
-            return false;
-        });
-
         int[] photos = {R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3};
         String[] names = {"Виктор Кузнецов", "Евгений Александров", "Дмитрий Валерьевич"};
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.getMenu().clear();
+        toolbar.inflateMenu(R.menu.profile_toolbar_menu);
+        TextView toolbarText = getActivity().findViewById(R.id.toolbar_text);
+        toolbarText.setText(R.string.profile);
 
         AdapterFriends adapter = new AdapterFriends(photos, names, getActivity());
         RecyclerView recyclerFriends = view.findViewById(R.id.recycler_friends);
@@ -80,8 +80,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Log.d(TAG, "photoProfileClicked");
                 DialogFragment dialogFragment = new PhotoOfProfileDialogFragment();
                 dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
-                if (getFragmentManager() != null)
-                    dialogFragment.show(getFragmentManager(), dialogFragment.getClass().getName());
+                dialogFragment.show(getActivity().getSupportFragmentManager(),
+                        dialogFragment.getClass().getName());
         }
     }
 
