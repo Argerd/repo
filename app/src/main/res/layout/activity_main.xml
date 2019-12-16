@@ -37,13 +37,13 @@
         android:elevation="16dp"
         android:hint="@string/search_view_hint"
         android:visibility="gone"
-        app:searchBackground="@drawable/rectangle_for_search_view"
         app:backIconTint="@color/black_60"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:searchBackIcon="@drawable/ic_search_for_toolbar"
+        app:searchBackground="@drawable/rectangle_for_search_view"
         app:voiceSearch="true" />
 
     <FrameLayout
@@ -69,7 +69,10 @@
         android:layout_height="@dimen/bottom_navigation_height"
         android:background="@color/white"
         android:clipChildren="false"
+        android:theme="@style/FontBottomNavigation"
         app:elevation="8dp"
+        app:itemIconTint="@color/bottom_navigation_item_color"
+        app:itemTextColor="@color/bottom_navigation_item_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,4 +111,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/helpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:elevation="8dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/help"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SmallSp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
