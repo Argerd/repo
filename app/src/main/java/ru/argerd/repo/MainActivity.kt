@@ -1,5 +1,6 @@
 package ru.argerd.repo
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -8,7 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ferfalk.simplesearchview.SimpleSearchView
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var toolbarText: TextView
     private lateinit var searchView: SimpleSearchView
+    private lateinit var helpText: TextView
 
     private lateinit var listOfCategories: List<Category>
 
@@ -42,15 +43,19 @@ class MainActivity : AppCompatActivity() {
         toolbarText.text = resources.getString(R.string.help)
         toolbar = findViewById(R.id.toolbar)
 
+        helpText = findViewById(R.id.helpText)
+        setColorHelpText(true)
+
         fab = findViewById(R.id.help_button)
         fab.setOnClickListener {
             if (navController.currentDestination?.id != R.id.categoriesOfHelpFragment) {
                 navController.navigate(R.id.categoriesOfHelpFragment)
-                visibilityToolbarText()
-                toolbarText.text = resources.getString(R.string.help)
-                toolbar.menu.clear()
-                bottomNavigation.menu.getItem(2).isChecked = true
             }
+            visibilityToolbarText()
+            toolbarText.text = resources.getString(R.string.help)
+            toolbar.menu.clear()
+            bottomNavigation.menu.getItem(2).isChecked = true
+            setColorHelpText(true)
         }
 
         searchView = findViewById(R.id.searchView)
@@ -66,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                     if (navController.currentDestination?.id != R.id.profileFragment) {
                         navController.navigate(R.id.profileFragment)
                         visibilityToolbarText()
+                        setColorHelpText(false)
                     }
                 }
                 R.id.search_item -> {
@@ -73,12 +79,14 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.searchFragment)
                         toolbarText.visibility = View.GONE
                         searchView.visibility = View.VISIBLE
+                        setColorHelpText(false)
                     }
                 }
                 R.id.news_item -> {
                     if (navController.currentDestination?.id != R.id.newsFragment) {
                         navController.navigate(R.id.newsScreen)
                         visibilityToolbarText()
+                        setColorHelpText(false)
                     }
                 }
             }
@@ -93,25 +101,26 @@ class MainActivity : AppCompatActivity() {
                 R.id.newsFragment -> {
                     bottomNavigation.menu.getItem(0).isChecked = true
                     visibilityToolbarText()
+                    setColorHelpText(false)
                 }
                 R.id.searchFragment -> {
                     bottomNavigation.menu.getItem(1).isChecked = true
                     toolbarText.visibility = View.GONE
                     searchView.visibility = View.VISIBLE
+                    setColorHelpText(false)
                 }
-                R.id.categoriesOfHelpFragment -> {
-                    bottomNavigation.menu.getItem(2).isChecked = true
-                    visibilityToolbarText()
-                }
+                R.id.categoriesOfHelpFragment -> fab.callOnClick()
                 R.id.profileFragment -> {
                     bottomNavigation.menu.getItem(4).isChecked = true
                     visibilityToolbarText()
+                    setColorHelpText(false)
                 }
                 R.id.filterFragment -> {
                     bottomNavigation.menu.getItem(0).isChecked = true
                     visibilityToolbarText()
+                    setColorHelpText(false)
                 }
-                else -> bottomNavigation.menu.getItem(2).isChecked = true
+                else -> fab.callOnClick()
             }
         }
     }
@@ -121,6 +130,22 @@ class MainActivity : AppCompatActivity() {
             if (visibility == View.GONE) {
                 visibility = View.VISIBLE
                 searchView.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setColorHelpText(isChecked: Boolean) {
+        if (isChecked) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                helpText.setTextColor(resources.getColor(R.color.turtle_green, null))
+            } else {
+                helpText.setTextColor(resources.getColor(R.color.turtle_green))
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                helpText.setTextColor(resources.getColor(R.color.black_40, null))
+            } else {
+                helpText.setTextColor(resources.getColor(R.color.black_40))
             }
         }
     }
