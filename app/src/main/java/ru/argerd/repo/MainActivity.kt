@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView: SimpleSearchView
     private lateinit var helpText: TextView
 
-    private lateinit var listOfCategories: List<Category>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "inOnCreate")
