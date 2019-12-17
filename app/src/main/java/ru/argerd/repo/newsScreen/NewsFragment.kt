@@ -55,7 +55,6 @@ class NewsFragment : Fragment() {
 
         settings = sharedPreferences?.all?.keys?.distinct()
 
-        var counter = 0
         settings?.let { settings ->
             if (settingsSize != settings.size || validEvents.isEmpty()) {
                 settingsSize = settings.size
@@ -65,6 +64,7 @@ class NewsFragment : Fragment() {
                     validEvents.clear()
                     for (i in listEvents.indices) {
                         listEvents[i].categories?.let { category ->
+                            var counter = 0
                             for (j in category.indices) {
                                 if (settings.contains(category[j]?.name)) {
                                     counter++

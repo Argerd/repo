@@ -27,7 +27,7 @@ class AdapterFriends extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_recycler_friends, parent, false);
+        View view = inflater.inflate(R.layout.item_friends, parent, false);
         return new FriendHolder(view);
     }
 

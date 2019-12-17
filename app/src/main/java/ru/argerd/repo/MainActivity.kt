@@ -3,6 +3,7 @@ package ru.argerd.repo
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -14,7 +15,6 @@ import androidx.navigation.Navigation
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import ru.argerd.repo.model.Category
 
 private const val TAG = "MainActivity"
 
@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         searchView = findViewById(R.id.searchView)
         searchView.setBackgroundResource(R.drawable.rectangle_for_search_view)
-
+        //searchView.elevation = resources.getDimension(R.dimen.searchViewElevation)
         val hint: EditText = searchView.findViewById(R.id.searchEditText)
-        hint.textSize = resources.getDimension(R.dimen.searchViewTextSize)
+        hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14.toFloat())
 
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
         navController.currentDestination?.let {
             when (it.id) {
-                R.id.newsFragment -> {
+                R.id.newsFragment, R.id.filterFragment -> {
                     bottomNavigation.menu.getItem(0).isChecked = true
                     visibilityToolbarText()
                     setColorHelpText(false)
@@ -110,11 +110,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.categoriesOfHelpFragment -> fab.callOnClick()
                 R.id.profileFragment -> {
                     bottomNavigation.menu.getItem(4).isChecked = true
-                    visibilityToolbarText()
-                    setColorHelpText(false)
-                }
-                R.id.filterFragment -> {
-                    bottomNavigation.menu.getItem(0).isChecked = true
                     visibilityToolbarText()
                     setColorHelpText(false)
                 }

@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Log.d(TAG, "photoProfileClicked");
                 DialogFragment dialogFragment = new PhotoOfProfileDialogFragment();
                 dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
-                dialogFragment.show(getActivity().getSupportFragmentManager(),
+                dialogFragment.show(getParentFragmentManager(),
                         dialogFragment.getClass().getName());
         }
     }

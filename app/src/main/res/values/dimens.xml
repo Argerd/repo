@@ -10,10 +10,7 @@
 
     <!--MainActivity-->
     <dimen name="bottom_navigation_height">54dp</dimen>
-    <dimen name="bottom_items_title_width">72dp</dimen>
-    <dimen name="bottom_items_title_height">13dp</dimen>
     <dimen name="help_button_size">42dp</dimen>
-    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
 
     <!--ProfileFragment-->
     <dimen name="photo_profile_height">220dp</dimen>

@@ -16,6 +16,6 @@ class SplashActivity : AppCompatActivity() {
                         MainActivity::class.java)) }
             }
         }
-        timer.schedule(timerTask, 1000)
+        timer.schedule(timerTask, 3000)
     }
 }

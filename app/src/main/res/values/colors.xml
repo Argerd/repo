@@ -24,4 +24,5 @@
     <color name="grey">#94998a</color>
     <color name="black_60">#99000000</color>
     <color name="black_54">#8a000000</color>
+    <color name="pale_grey">#eff3f6</color>
 </resources>
