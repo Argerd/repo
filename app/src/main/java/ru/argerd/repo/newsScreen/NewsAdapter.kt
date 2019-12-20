@@ -148,30 +148,5 @@ internal class NewsAdapter(internal var events: List<Event>)
                 }
             }
         }
-
-        private fun getTarget(): Target {
-            return object : Target {
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                }
-
-                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                }
-
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    Thread {
-                        val file = File(photoFileName)
-                        try {
-                            file.createNewFile()
-                            val fos = FileOutputStream(file)
-                            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, fos)
-                            fos.flush()
-                            fos.close()
-                        } catch (e: java.lang.Exception) {
-                            Log.d(TAG, "Ошибка при записи в файл")
-                        }
-                    }.start()
-                }
-            }
-        }
     }
 }

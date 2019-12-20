@@ -56,9 +56,18 @@ class DetailScreenActivity : AppCompatActivity() {
             }
             eventContent.text = it.content
             it.photos?.let { photos ->
-                picasso.load(photos[0]).into(firstPhoto)
-                picasso.load(photos[1]).into(secondPhoto)
-                picasso.load(photos[2]).into(thirdPhoto)
+                when (photos.size) {
+                    1 -> picasso.load(photos[0]).into(firstPhoto)
+                    2 -> {
+                        picasso.load(photos[0]).into(firstPhoto)
+                        picasso.load(photos[1]).into(secondPhoto)
+                    }
+                    3 -> {
+                        picasso.load(photos[0]).into(firstPhoto)
+                        picasso.load(photos[1]).into(secondPhoto)
+                        picasso.load(photos[2]).into(thirdPhoto)
+                    }
+                }
             }
         }
         val leftDays: TextView = findViewById(R.id.left_days)
