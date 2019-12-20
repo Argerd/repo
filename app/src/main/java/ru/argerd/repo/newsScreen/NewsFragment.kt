@@ -24,7 +24,6 @@ private const val ARG_CATEGORIES = "categories"
 private const val FILTER_SETTINGS = "filterSettings"
 
 class NewsFragment : Fragment() {
-    private val photo = R.drawable.news_1
     private val parser = Parser()
 
     private var listCategories: ArrayList<Category>? = null
@@ -34,7 +33,6 @@ class NewsFragment : Fragment() {
     private var newsAdapter: NewsAdapter? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var listEvents: List<Event>
-    private var settingsSize = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -55,6 +53,7 @@ class NewsFragment : Fragment() {
 
         settings = sharedPreferences?.all?.keys?.distinct()
 
+        var settingsSize = 0
         settings?.let { settings ->
             if (settingsSize != settings.size || validEvents.isEmpty()) {
                 settingsSize = settings.size
@@ -81,7 +80,7 @@ class NewsFragment : Fragment() {
         }
         Log.d(TAG, "valid events size ${validEvents.size}")
         if (newsAdapter == null) {
-            newsAdapter = NewsAdapter(photo, validEvents)
+            newsAdapter = NewsAdapter(validEvents)
             recyclerView.adapter = newsAdapter
         } else {
             newsAdapter?.let {
@@ -92,8 +91,6 @@ class NewsFragment : Fragment() {
                 recyclerView.adapter = it
             }
         }
-
-        Log.d(TAG, "setting size ${settings!!.size}")
 
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
         activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.news)

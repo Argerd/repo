@@ -10,7 +10,8 @@ data class Event(
         var date: String? = null,
         var nameOfOrganization: String? = null,
         var address: String? = null,
-        var phones: String? = null,
+        var phones: List<String?>? = null,
+        var photos: List<String?>? = null,
         var content: String? = null,
         var categories: List<Category?>? = null
 ) : Parcelable

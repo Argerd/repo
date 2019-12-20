@@ -24,11 +24,11 @@
     <ImageView
         android:id="@+id/fade"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="@+id/photo_of_news"
         app:layout_constraintEnd_toEndOf="@+id/photo_of_news"
         app:layout_constraintStart_toStartOf="@+id/photo_of_news"
-        app:layout_constraintTop_toTopOf="@+id/photo_of_news"
         app:srcCompat="@drawable/fade"
         tools:ignore="ContentDescription" />
 
