@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="356dp" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/details_toolbar"
@@ -38,7 +38,6 @@
             android:textSize="21sp" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -60,12 +59,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_toolbar"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/details_toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -77,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.056" />
-
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/start_gradient2"
@@ -92,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/officina_sans_extra_bold_scc"
-                android:lineSpacingExtra="2sp"
+                android:lineSpacingExtra="6sp"
                 android:textColor="@color/blue_grey"
                 android:textSize="21sp"
                 app:layout_constraintEnd_toStartOf="@+id/start_gradient2"
@@ -227,11 +224,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:adjustViewBounds="true"
-                app:layout_constraintEnd_toStartOf="@+id/thirdPhoto"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/questions"
-                app:srcCompat="@drawable/news_1"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -245,7 +240,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/firstPhoto"
-                app:srcCompat="@drawable/legs"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -259,7 +253,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/firstPhoto"
                 app:layout_constraintTop_toTopOf="@+id/firstPhoto"
-                app:srcCompat="@drawable/man_with_women"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -275,33 +268,6 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/event_content" />
 
-            <ImageView
-                android:id="@+id/helping_things_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toTopOf="@+id/helping_things_text"
-                app:layout_constraintEnd_toStartOf="@+id/imageView12"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_shirt"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/helping_things_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/helping_things"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView12"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SmallSp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_of_avatars"
                 android:layout_width="match_parent"
@@ -312,124 +278,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_content" />
-
-            <TextView
-                android:id="@+id/become_volunteer_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/become_volunteer"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView10"
-                app:layout_constraintStart_toEndOf="@+id/imageView12"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/prof_help2_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/prof_help2"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView11"
-                app:layout_constraintStart_toEndOf="@+id/become_volunteer_text"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/money_help2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/money_help2"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView11"
-                tools:ignore="SmallSp" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/prof_help2_image"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/volunteer_image"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
-                app:srcCompat="@mipmap/separator_2"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/money_help2_image"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/prof_help2_image"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
-                app:srcCompat="@mipmap/separator_2"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/volunteer_image"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/helping_things_image"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
-                app:srcCompat="@mipmap/separator_2"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/volunteer_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toTopOf="@+id/become_volunteer_text"
-                app:layout_constraintEnd_toStartOf="@+id/imageView10"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView12"
-                app:srcCompat="@drawable/ic_hands"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/prof_help2_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toTopOf="@+id/prof_help2_text"
-                app:layout_constraintEnd_toStartOf="@+id/imageView11"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:srcCompat="@drawable/ic_tools"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/money_help2_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toTopOf="@+id/money_help2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_avatars"
-                app:srcCompat="@drawable/ic_coins"
-                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/event_content"
@@ -444,6 +292,154 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/firstPhoto" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/money_help2_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/money_help2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:srcCompat="@drawable/ic_coins"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/volunteer_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/helping_things_image"
+        app:srcCompat="@mipmap/separator_2"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/prof_help2_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/volunteer_image"
+        app:srcCompat="@mipmap/separator_2"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/money_help2_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/prof_help2_image"
+        app:srcCompat="@mipmap/separator_2"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/money_help2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/money_help2"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/prof_help2_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/prof_help2"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView11"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/prof_help2_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/prof_help2_text"
+        app:layout_constraintEnd_toStartOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:srcCompat="@drawable/ic_tools"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/volunteer_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/become_volunteer_text"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:srcCompat="@drawable/ic_hands"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/helping_things_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/helping_things"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/helping_things_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/helping_things_text"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_shirt"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/become_volunteer_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/become_volunteer"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        tools:ignore="SmallSp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
