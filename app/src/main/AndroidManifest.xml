@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.argerd.repo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -13,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".detailDescriptionScreen.DetailScreenActivity"></activity>
+        <activity android:name=".detailDescriptionScreen.DetailScreenActivity"/>
         <activity
             android:name=".SplashActivity"
             android:noHistory="true">

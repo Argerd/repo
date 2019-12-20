@@ -1,6 +1,9 @@
 package ru.argerd.repo.newsScreen
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +11,26 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import org.threeten.bp.LocalDate
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
+import java.io.File
+import java.io.FileOutputStream
+
+private const val TAG = "NewsAdapter"
 
 private const val EVENT_EXTRA = "title"
 private const val DAYS_EXTRA = "days"
 
-internal class NewsAdapter(private val photo: Int,
-                           internal var events: List<Event>)
+internal class NewsAdapter(internal var events: List<Event>)
     : RecyclerView.Adapter<NewsAdapter.Holder>() {
+    val picasso: Picasso = Picasso.get()
+
+    init {
+        picasso.setIndicatorsEnabled(true)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,7 +38,7 @@ internal class NewsAdapter(private val photo: Int,
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(photo, events[position])
+        holder.bind(events[position])
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +52,7 @@ internal class NewsAdapter(private val photo: Int,
         private val newsContent: TextView = itemView.findViewById(R.id.news_content)
         private lateinit var event: Event
         private val date: TextView = itemView.findViewById(R.id.date_of_news)
+        private lateinit var photoFileName: String
 
         init {
             photo.setOnClickListener(this)
@@ -46,9 +60,14 @@ internal class NewsAdapter(private val photo: Int,
             newsContent.setOnClickListener(this)
         }
 
-        fun bind(photo: Int, event: Event) {
+        fun bind(event: Event) {
+            photoFileName = itemView.context.filesDir.toString() + "/${event.title}/firstPhoto"
             this.event = event
-            this.photo.setImageResource(photo)
+            event.photos?.let { list ->
+                list[0]?.let { photo ->
+                    picasso.load(photo).into(this.photo)
+                }
+            }
             this.title.text = event.title
             this.newsContent.text = event.content
             setDate()
@@ -126,6 +145,31 @@ internal class NewsAdapter(private val photo: Int,
                             it.substringBeforeLast("-").substringAfter("-") +
                             ", " + it.substringBefore("-")
                     this.date.text = text
+                }
+            }
+        }
+
+        private fun getTarget(): Target {
+            return object : Target {
+                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                }
+
+                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                }
+
+                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                    Thread {
+                        val file = File(photoFileName)
+                        try {
+                            file.createNewFile()
+                            val fos = FileOutputStream(file)
+                            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                            fos.flush()
+                            fos.close()
+                        } catch (e: java.lang.Exception) {
+                            Log.d(TAG, "Ошибка при записи в файл")
+                        }
+                    }.start()
                 }
             }
         }

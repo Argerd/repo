@@ -1,11 +1,13 @@
 package ru.argerd.repo.detailDescriptionScreen
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
 
@@ -30,13 +32,34 @@ class DetailScreenActivity : AppCompatActivity() {
         val address: TextView = findViewById(R.id.address)
         val phonesNumbers: TextView = findViewById(R.id.phones_numbers)
         val eventContent: TextView = findViewById(R.id.event_content)
+
+        val picasso = Picasso.get()
+        val firstPhoto: ImageView = findViewById(R.id.firstPhoto)
+        val secondPhoto: ImageView = findViewById(R.id.secondPhoto)
+        val thirdPhoto: ImageView = findViewById(R.id.thirdPhoto)
+
         event?.let {
             detailsToolbarTitle.text = it.title
             titleEvent.text = it.title
             subtitleEvent.text = it.nameOfOrganization
             address.text = it.address
-            phonesNumbers.text = it.phones
+            it.phones?.let { phones ->
+                var text = ""
+                for (i in phones.indices) {
+                    text += if (i != phones.size - 1) {
+                        phones[i] + "\n"
+                    } else {
+                        phones[i]
+                    }
+                }
+                phonesNumbers.text = text
+            }
             eventContent.text = it.content
+            it.photos?.let { photos ->
+                picasso.load(photos[0]).into(firstPhoto)
+                picasso.load(photos[1]).into(secondPhoto)
+                picasso.load(photos[2]).into(thirdPhoto)
+            }
         }
         val leftDays: TextView = findViewById(R.id.left_days)
         leftDays.text = intent.getStringExtra(DAYS_EXTRA)
