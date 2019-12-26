@@ -1,9 +1,6 @@
 package ru.argerd.repo.newsScreen
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +9,14 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import org.threeten.bp.LocalDate
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
-import java.io.File
-import java.io.FileOutputStream
-
-private const val TAG = "NewsAdapter"
 
 private const val EVENT_EXTRA = "title"
 private const val DAYS_EXTRA = "days"
 
-internal class NewsAdapter(internal var events: List<Event>)
+internal class NewsAdapter(internal var events: ArrayList<Event>?)
     : RecyclerView.Adapter<NewsAdapter.Holder>() {
     val picasso: Picasso = Picasso.get()
 
@@ -38,11 +30,13 @@ internal class NewsAdapter(internal var events: List<Event>)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(events[position])
+        events?.let {
+            holder.bind(it[position])
+        }
     }
 
     override fun getItemCount(): Int {
-        return events.size
+        return events?.size ?: 0
     }
 
     internal inner class Holder(itemView: View)
