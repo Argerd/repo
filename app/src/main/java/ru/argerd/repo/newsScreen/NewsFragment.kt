@@ -1,84 +1,82 @@
 package ru.argerd.repo.newsScreen
 
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Messenger
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.argerd.repo.Parser
 import ru.argerd.repo.R
-import ru.argerd.repo.model.Category
 import ru.argerd.repo.model.Event
+import ru.argerd.repo.parsing.ExecutorEventsParsing
+import ru.argerd.repo.parsing.IntentServiceEventsParsing
 
+private const val SAVE_LIST = "save_list"
 private const val TAG = "NewsFragment"
-private const val ARG_CATEGORIES = "categories"
-private const val FILTER_SETTINGS = "filterSettings"
 
 class NewsFragment : Fragment() {
-    private val parser = Parser()
-
-    private var listCategories: ArrayList<Category>? = null
-    private var sharedPreferences: SharedPreferences? = null
-    private var settings: List<String>? = null
-    private var validEvents: MutableList<Event> = mutableListOf()
     private var newsAdapter: NewsAdapter? = null
     private lateinit var recyclerView: RecyclerView
-    private lateinit var listEvents: List<Event>
+    private lateinit var progressBar: ProgressBar
+    //private lateinit var asyncTaskParsing: AsyncTaskEventsParsing
+    private lateinit var executorParsing: ExecutorEventsParsing
+    private var validEvents: ArrayList<Event>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
 
+        progressBar = view.findViewById(R.id.progressBarEvents)
+
         recyclerView = view.findViewById(R.id.news_list)
         recyclerView.apply {
+            visibility = View.GONE
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(Decorator(resources.getDimensionPixelOffset(R.dimen.bottom_margin_news)))
         }
 
-        listCategories = context?.let { parser.getCategories(it) }
-        context?.let {
-            listEvents = parser.getEvents(it)
-        }
+        activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.news)
 
-        sharedPreferences = activity?.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
-
-        settings = sharedPreferences?.all?.keys?.distinct()
-
-        var settingsSize = 0
-        settings?.let { settings ->
-            if (settingsSize != settings.size || validEvents.isEmpty()) {
-                settingsSize = settings.size
-                if (settings.isEmpty()) {
-                    validEvents = listEvents.toMutableList()
-                } else {
-                    validEvents.clear()
-                    for (i in listEvents.indices) {
-                        listEvents[i].categories?.let { category ->
-                            var counter = 0
-                            for (j in category.indices) {
-                                if (settings.contains(category[j]?.name)) {
-                                    counter++
-                                }
-                                if (counter == settings.size) {
-                                    validEvents.add(listEvents[i])
-                                    counter = 0
-                                }
-                            }
-                        }
-                    }
-                }
+        if (savedInstanceState != null) {
+            validEvents = savedInstanceState.getParcelableArrayList(SAVE_LIST)
+            updateRecycler()
+        } else {
+            // Вариант с IntentService
+            val handler = Handler {
+                val replyBundle = it.data
+                callbackForUpdate(
+                        replyBundle
+                                .getParcelableArrayList<Event>(IntentServiceEventsParsing.LIST_EXTRA)
+                                ?: ArrayList())
+                true
             }
+            val intent = Intent(context, IntentServiceEventsParsing::class.java)
+            intent.putExtra(IntentServiceEventsParsing.MESSENGER_EXTRA, Messenger(handler))
+            activity?.startService(intent)
+            // Вариант с Executor
+            /* executorParsing = ExecutorEventsParsing(context) { arg -> callbackForUpdate(arg) }
+             executorParsing.execute()*/
+
+            // Вариант с AsyncTask
+            /*asyncTaskParsing = AsyncTaskEventsParsing(context) { arg -> callbackForUpdate(arg)}
+            asyncTaskParsing.execute()*/
         }
-        Log.d(TAG, "valid events size ${validEvents.size}")
+
+        return view
+    }
+
+    private fun callbackForUpdate(validEvents: ArrayList<Event>) {
+        this.validEvents = validEvents
+        progressBar.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
         if (newsAdapter == null) {
             newsAdapter = NewsAdapter(validEvents)
             recyclerView.adapter = newsAdapter
@@ -91,23 +89,28 @@ class NewsFragment : Fragment() {
                 recyclerView.adapter = it
             }
         }
+    }
 
-        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
-        activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.news)
-        toolbar?.apply {
-            menu.clear()
-            inflateMenu(R.menu.filter_of_news_menu)
-            setOnMenuItemClickListener {
-                val bundle = Bundle()
-                menu.clear()
-                bundle.putParcelableArrayList(ARG_CATEGORIES, listCategories)
-                container?.let {
-                    Navigation.findNavController(it).navigate(R.id.filterFragment, bundle)
-                }
-                return@setOnMenuItemClickListener true
+    private fun updateRecycler() {
+        progressBar.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+        if (newsAdapter == null) {
+            newsAdapter = NewsAdapter(validEvents)
+            recyclerView.adapter = newsAdapter
+        } else {
+            newsAdapter?.let {
+                val utils = NewsDiffUtils(it.events, validEvents)
+                val utilsResult = DiffUtil.calculateDiff(utils)
+                it.events = validEvents
+                utilsResult.dispatchUpdatesTo(it)
+                recyclerView.adapter = it
             }
         }
+    }
 
-        return view
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(SAVE_LIST, validEvents)
+        Log.d(TAG, "valid size before ${validEvents?.size}")
     }
 }

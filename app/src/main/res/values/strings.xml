@@ -62,4 +62,6 @@
         <item>дня</item>
         <item>дней</item>
     </string-array>
+
+    <string name="load_successful">Загрузка завершена</string>
 </resources>

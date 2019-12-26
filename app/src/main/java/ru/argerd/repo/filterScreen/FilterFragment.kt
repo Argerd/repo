@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Category
 
-private const val ARG_CATEGORIES = "categories"
 private const val FILTER_SETTINGS = "filterSettings"
+const val ARG_CATEGORIES = "categories"
 
 class FilterFragment : Fragment() {
     private lateinit var listOfFilter: RecyclerView
@@ -45,7 +45,7 @@ class FilterFragment : Fragment() {
             navigationIcon = resources.getDrawable(R.drawable.ic_back, null)
             setNavigationOnClickListener {
                 container?.let {
-                    Navigation.findNavController(it).popBackStack()
+                    activity?.onBackPressed()
                 }
             }
             inflateMenu(R.menu.filter_ok_menu)

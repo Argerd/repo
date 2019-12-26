@@ -1,4 +1,4 @@
-package ru.argerd.repo
+package ru.argerd.repo.parsing
 
 import android.content.Context
 import android.util.Log
@@ -27,14 +27,14 @@ class Parser {
         return Gson().fromJson<ArrayList<Category>>(json, categoriesType)
     }
 
-    fun getEvents(context: Context): List<Event> {
+    fun getEvents(context: Context): ArrayList<Event> {
         val json: String
         try {
             val inputStream = context.assets.open("1")
             json = inputStream.bufferedReader().use { it.readText() }
         } catch (e: Exception) {
-            return listOf()
+            return arrayListOf()
         }
-        return Gson().fromJson<List<Event>>(json, eventsType)
+        return Gson().fromJson<ArrayList<Event>>(json, eventsType)
     }
 }
