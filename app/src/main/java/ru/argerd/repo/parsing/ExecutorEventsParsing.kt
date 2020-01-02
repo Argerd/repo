@@ -19,7 +19,6 @@ class ExecutorEventsParsing(
     private val handler = Handler(Looper.getMainLooper())
 
     private var settings: List<String>? = null
-    private var settingsSize = 0
     private var validEvents: ArrayList<Event> = ArrayList()
     private lateinit var listEvents: ArrayList<Event>
     private val parser = Parser()
@@ -36,23 +35,20 @@ class ExecutorEventsParsing(
             }
 
             settings?.let { settings ->
-                if (settingsSize != settings.size || validEvents.isEmpty()) {
-                    settingsSize = settings.size
-                    if (settings.isEmpty()) {
-                        validEvents = listEvents
-                    } else {
-                        validEvents.clear()
-                        for (i in listEvents.indices) {
-                            listEvents[i].categories?.let { category ->
-                                var counter = 0
-                                for (j in category.indices) {
-                                    if (settings.contains(category[j]?.name)) {
-                                        counter++
-                                    }
-                                    if (counter == settings.size) {
-                                        validEvents.add(listEvents[i])
-                                        counter = 0
-                                    }
+                if (settings.isEmpty()) {
+                    validEvents = listEvents
+                } else {
+                    validEvents.clear()
+                    for (i in listEvents.indices) {
+                        listEvents[i].categories?.let { category ->
+                            var counter = 0
+                            for (j in category.indices) {
+                                if (settings.contains(category[j]?.name)) {
+                                    counter++
+                                }
+                                if (counter == settings.size) {
+                                    validEvents.add(listEvents[i])
+                                    counter = 0
                                 }
                             }
                         }
