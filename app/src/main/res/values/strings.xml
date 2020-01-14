@@ -68,4 +68,12 @@
     <string name="authorization">Авторизация</string>
     <string name="authorizationTitle">Для участия в мероприятиях войдите в приложение
         через социальные сети</string>
+    <string name="authorizationSecondTitle">Или авторизуйтесь через приложение</string>
+    <string name="email_hint">E-mail</string>
+    <string name="email_hint_text">Введите e-mail</string>
+    <string name="password_hint">Пароль</string>
+    <string name="password_hint_text">Введите пароль</string>
+    <string name="login">войти</string>
+    <string name="forgot_password"><u>Забыли пароль</u></string>
+    <string name="registration"><u>Регистрация</u></string>
 </resources>
