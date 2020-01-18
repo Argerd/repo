@@ -76,4 +76,9 @@
     <string name="login">войти</string>
     <string name="forgot_password"><u>Забыли пароль</u></string>
     <string name="registration"><u>Регистрация</u></string>
+
+    <string name="search_pager_hint">Напишите в строке поиска название
+        мероприятия или ключевые слова.</string>
+    <string name="for_example">Например,</string>
+    <string name="link_pager_hint"> <u>мастер-класс, помощь</u></string>
 </resources>

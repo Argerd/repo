@@ -9,15 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import ru.argerd.repo.R;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
-    private String[] namesOfItems;
+    private ArrayList<String> items;
     private Context context;
 
-    ListAdapter(String[] namesOfItems, Context context) {
-        this.namesOfItems = namesOfItems;
+    ListAdapter(ArrayList<String> items, Context context) {
+        this.items = items;
         this.context = context;
+    }
+
+    void setItems(ArrayList<String> items) {
+        this.items = items;
     }
 
     @NonNull
@@ -29,12 +35,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.bind(namesOfItems[position]);
+        holder.bind(items.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return namesOfItems.length;
+        return items.size();
     }
 
     class Holder extends RecyclerView.ViewHolder {

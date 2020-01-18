@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapter extends FragmentPagerAdapter {
     private String[] tabTitles = {"По мероприятиям", "По НКО"};
 
     PagerAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -18,15 +18,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return PageFragment.newInstance(new String[]{"Благотворительный фонд Алины Ковальчукglbnlkdbnltknbkdrnblk"
-                        , "<<Во имя жизни>>",
-                        "Благотворительный Фонд В. Потанина",
-                        "<<Детские домики>>",
-                        "<<Мозаика счастья>>"});
+                return PageFragment.newInstance((byte) 0);
             case 1:
-                return PageFragment.newInstance(new String[]{"3", "4"});
             default:
-                return null;
+                return PageFragment.newInstance((byte) 1);
         }
     }
 

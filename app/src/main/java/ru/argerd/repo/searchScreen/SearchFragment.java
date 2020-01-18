@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import ru.argerd.repo.R;
 
 public class SearchFragment extends Fragment {
+    private static final String TAG = SearchFragment.class.getName();
 
     @Nullable
     @Override
@@ -29,8 +30,10 @@ public class SearchFragment extends Fragment {
         toolbar.getMenu().clear();
 
         ViewPager viewPager = view.findViewById(R.id.fragment_pager);
-        viewPager.setAdapter(new PagerAdapter(getActivity().getSupportFragmentManager(),
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
+        PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(pagerAdapter);
+
         TabLayout tabLayout = view.findViewById(R.id.fragment_tab);
         tabLayout.setupWithViewPager(viewPager);
 

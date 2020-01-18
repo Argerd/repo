@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var toolbarText: TextView
     private lateinit var searchView: SimpleSearchView
+    private lateinit var editTextSearchView: EditText
     private lateinit var helpText: TextView
     private var listCategories: ArrayList<Category>? = null
     private lateinit var progressBar: ProgressBar
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             if (navController.currentDestination?.id != R.id.categoriesOfHelpFragment) {
                 navController.navigate(R.id.categoriesOfHelpFragment)
             }
-            visibilityToolbarText()
+            setVisibilityToolbarText()
             toolbarText.text = resources.getString(R.string.help)
             toolbar.menu.clear()
             bottomNavigation.menu.getItem(2).isChecked = true
@@ -98,8 +99,8 @@ class MainActivity : AppCompatActivity() {
 
         searchView = findViewById(R.id.searchView)
         searchView.setBackgroundResource(R.drawable.rectangle_for_search_view)
-        val hint: EditText = searchView.findViewById(R.id.searchEditText)
-        hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14.toFloat())
+        editTextSearchView = searchView.findViewById(R.id.searchEditText)
+        editTextSearchView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14.toFloat())
 
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.profile_item -> {
                     if (navController.currentDestination?.id != R.id.profileFragment) {
                         navController.navigate(R.id.profileFragment)
-                        visibilityToolbarText()
+                        setVisibilityToolbarText()
                         setColorHelpText(false)
                     }
                 }
@@ -122,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.news_item -> {
                     if (navController.currentDestination?.id != R.id.newsFragment) {
                         navController.navigate(R.id.newsScreen)
-                        visibilityToolbarText()
+                        setVisibilityToolbarText()
                         setColorHelpText(false)
                         setToolbarForNews()
                     }
@@ -130,6 +131,17 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        updateUI()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "before saving ${listCategories?.size ?: -1}")
+        outState.putParcelableArrayList(SAVED_CATEGORIES, listCategories)
     }
 
     private fun callbackForExecutor(list: ArrayList<Category>?) {
@@ -148,37 +160,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navController.currentDestination?.let {
-            when (it.id) {
-                R.id.newsFragment -> {
-                    bottomNavigation.menu.getItem(0).isChecked = true
-                    visibilityToolbarText()
-                    setColorHelpText(false)
-                    setToolbarForNews()
-                }
-                R.id.filterFragment -> {
-                    bottomNavigation.menu.getItem(0).isChecked = true
-                    visibilityToolbarText()
-                    setColorHelpText(false)
-                }
-                R.id.searchFragment -> {
-                    bottomNavigation.menu.getItem(1).isChecked = true
-                    toolbarText.visibility = View.GONE
-                    searchView.visibility = View.VISIBLE
-                    setColorHelpText(false)
-                }
-                R.id.categoriesOfHelpFragment -> fab.callOnClick()
-                R.id.profileFragment -> {
-                    bottomNavigation.menu.getItem(4).isChecked = true
-                    visibilityToolbarText()
-                    setColorHelpText(false)
-                }
-                else -> fab.callOnClick()
-            }
-        }
+        updateUI()
     }
 
-    private fun visibilityToolbarText() {
+    private fun setVisibilityToolbarText() {
         toolbarText.apply {
             if (visibility == View.GONE) {
                 visibility = View.VISIBLE
@@ -218,9 +203,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        Log.d(TAG, "before saving ${listCategories?.size ?: -1}")
-        outState.putParcelableArrayList(SAVED_CATEGORIES, listCategories)
+    private fun updateUI() {
+        navController.currentDestination?.let {
+            when (it.id) {
+                R.id.newsFragment -> {
+                    bottomNavigation.menu.getItem(0).isChecked = true
+                    setVisibilityToolbarText()
+                    setColorHelpText(false)
+                    setToolbarForNews()
+                }
+                R.id.filterFragment -> {
+                    bottomNavigation.menu.getItem(0).isChecked = true
+                    setVisibilityToolbarText()
+                    setColorHelpText(false)
+                }
+                R.id.searchFragment -> {
+                    bottomNavigation.menu.getItem(1).isChecked = true
+                    toolbarText.visibility = View.GONE
+                    searchView.visibility = View.VISIBLE
+                    setColorHelpText(false)
+                }
+                R.id.categoriesOfHelpFragment -> fab.callOnClick()
+                R.id.profileFragment -> {
+                    bottomNavigation.menu.getItem(4).isChecked = true
+                    setVisibilityToolbarText()
+                    setColorHelpText(false)
+                }
+                else -> fab.callOnClick()
+            }
+        }
     }
 }
