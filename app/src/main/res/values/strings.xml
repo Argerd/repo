@@ -64,4 +64,21 @@
     </string-array>
 
     <string name="load_successful">Загрузка завершена</string>
+
+    <string name="authorization">Авторизация</string>
+    <string name="authorizationTitle">Для участия в мероприятиях войдите в приложение
+        через социальные сети</string>
+    <string name="authorizationSecondTitle">Или авторизуйтесь через приложение</string>
+    <string name="email_hint">E-mail</string>
+    <string name="email_hint_text">Введите e-mail</string>
+    <string name="password_hint">Пароль</string>
+    <string name="password_hint_text">Введите пароль</string>
+    <string name="login">войти</string>
+    <string name="forgot_password"><u>Забыли пароль</u></string>
+    <string name="registration"><u>Регистрация</u></string>
+
+    <string name="search_pager_hint">Напишите в строке поиска название
+        мероприятия или ключевые слова.</string>
+    <string name="for_example">Например,</string>
+    <string name="link_pager_hint"> <u>мастер-класс, помощь</u></string>
 </resources>

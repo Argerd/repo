@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         val timerTask: TimerTask = object : TimerTask() {
             override fun run() {
                 runOnUiThread { startActivity(Intent(this@SplashActivity,
-                        MainActivity::class.java)) }
+                        AuthorizationActivity::class.java)) }
             }
         }
         timer.schedule(timerTask, 3000)

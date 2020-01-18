@@ -26,6 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity
+            android:name=".AuthorizationActivity"
+            android:noHistory="true" />
 
         <service android:name="ru.argerd.repo.parsing.IntentServiceCategoriesParsing" />
         <service android:name=".parsing.IntentServiceEventsParsing" />
