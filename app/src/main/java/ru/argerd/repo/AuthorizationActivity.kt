@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.disposables.CompositeDisposable
@@ -42,15 +43,13 @@ class AuthorizationActivity : AppCompatActivity() {
                 .add(password.textChanges().subscribe { text -> passwordLength = text.length })
 
         compositeDisposable.add(loginButton.clicks().subscribe {
-            /*if (passwordLength > 5 && emailLength > 5) {
+            if (passwordLength > 5 && emailLength > 5) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
                 Snackbar.make(loginButton,
                         "E-mail или пароль слишком мал!", Snackbar.LENGTH_LONG).show()
-            }*/
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            }
         })
     }
 
