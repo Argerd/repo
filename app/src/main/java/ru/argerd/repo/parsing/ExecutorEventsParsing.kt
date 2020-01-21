@@ -18,23 +18,23 @@ class ExecutorEventsParsing(
     private val executor: Executor = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
 
-    private var settings: List<String>? = null
-    private var validEvents: ArrayList<Event> = ArrayList()
+    /*private var settings: List<String>? = null
+    private var validEvents: ArrayList<Event> = ArrayList()*/
     private lateinit var listEvents: ArrayList<Event>
     private val parser = Parser()
-    private var sharedPreferences: SharedPreferences? = null
+    // private var sharedPreferences: SharedPreferences? = null
 
     fun execute() {
         executor.execute {
-            sharedPreferences = context?.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
+            /*sharedPreferences = context?.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
 
-            settings = sharedPreferences?.all?.keys?.distinct()
+            settings = sharedPreferences?.all?.keys?.distinct()*/
 
-            context?.let {
+           /* context?.let {
                 listEvents = parser.getEvents(it)
-            }
+            }*/
 
-            settings?.let { settings ->
+           /* settings?.let { settings ->
                 if (settings.isEmpty()) {
                     validEvents = listEvents
                 } else {
@@ -54,10 +54,10 @@ class ExecutorEventsParsing(
                         }
                     }
                 }
-            }
-            Thread.sleep(5000)
-            Log.d("NewsScreen", "async valid events size ${validEvents.size}")
-            handler.post { callback(validEvents) }
+            }*/
+            /*Thread.sleep(5000)
+            Log.d("NewsScreen", "async valid events size ${validEvents.size}")*/
+            handler.post { callback(listEvents) }
         }
     }
 }

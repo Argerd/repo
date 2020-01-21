@@ -80,5 +80,7 @@
     <string name="search_pager_hint">Напишите в строке поиска название
         мероприятия или ключевые слова.</string>
     <string name="for_example">Например,</string>
-    <string name="link_pager_hint"> <u>мастер-класс, помощь</u></string>
+    <string name="link_pager_hint"><u>мастер-класс, помощь</u></string>
+
+    <string name="error_network">Ошибка сети</string>
 </resources>

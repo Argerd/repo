@@ -11,11 +11,11 @@ class AsyncTaskCategoriesParsing(
         val context: Context?,
         private val callbackList: () -> Unit,
         private val callbackBar: () -> Unit
-) : AsyncTask<Void, Void, ArrayList<Category>?>() {
-    override fun doInBackground(vararg params: Void?): ArrayList<Category>? {
+) : AsyncTask<Void, Void, ArrayList<Category?>?>() {
+    override fun doInBackground(vararg params: Void?): ArrayList<Category?>? {
         val parser = Parser()
         context?.let {
-            val listOfCategories: ArrayList<Category>?
+            val listOfCategories: ArrayList<Category?>?
             listOfCategories = parser.getCategories(it)
             Thread.sleep(5000)
             Log.d("MainActivity", "asycn ${listOfCategories.size}")
@@ -24,7 +24,7 @@ class AsyncTaskCategoriesParsing(
         return null
     }
 
-    override fun onPostExecute(result: ArrayList<Category>?) {
+    override fun onPostExecute(result: ArrayList<Category?>?) {
         super.onPostExecute(result)
         Toast.makeText(context, R.string.load_successful, Toast.LENGTH_LONG).show()
         callbackBar()

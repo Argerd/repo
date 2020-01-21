@@ -39,11 +39,12 @@ class DetailScreenActivity : AppCompatActivity() {
         val thirdPhoto: ImageView = findViewById(R.id.thirdPhoto)
 
         event?.let {
-            detailsToolbarTitle.text = it.title
-            titleEvent.text = it.title
+            detailsToolbarTitle.text = it.name
+            titleEvent.text = it.name
             subtitleEvent.text = it.nameOfOrganization
             address.text = it.address
-            it.phones?.let { phones ->
+            phonesNumbers.text = it.phone
+            /*it.phone?.let { phones ->
                 var text = ""
                 for (i in phones.indices) {
                     text += if (i != phones.size - 1) {
@@ -53,8 +54,8 @@ class DetailScreenActivity : AppCompatActivity() {
                     }
                 }
                 phonesNumbers.text = text
-            }
-            eventContent.text = it.content
+            }*/
+            eventContent.text = it.description
             it.photos?.let { photos ->
                 when (photos.size) {
                     1 -> picasso.load(photos[0]).into(firstPhoto)

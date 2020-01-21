@@ -55,15 +55,15 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
         }
 
         fun bind(event: Event) {
-            photoFileName = itemView.context.filesDir.toString() + "/${event.title}/firstPhoto"
+            photoFileName = itemView.context.filesDir.toString() + "/${event.name}/firstPhoto"
             this.event = event
             event.photos?.let { list ->
                 list[0]?.let { photo ->
                     picasso.load(photo).into(this.photo)
                 }
             }
-            this.title.text = event.title
-            this.newsContent.text = event.content
+            this.title.text = event.name
+            this.newsContent.text = event.description
             setDate()
         }
 
@@ -75,7 +75,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
         }
 
         private fun setDate() {
-            event.date?.let {
+            event.endDate?.let {
                 val date = LocalDate.of(
                         it.substringBefore("-").toInt(),
                         it.substringAfterLast("-").toInt(),
