@@ -39,11 +39,13 @@ class CategoriesOfHelpFragment : Fragment() {
         recyclerCategories = view.findViewById(R.id.recycler_categories)
         recyclerCategories.layoutManager = GridLayoutManager(context, 2)
 
-        val toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
-        toolbar.menu.clear()
+        activity?.let {
+            val toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+            val toolbarText = activity!!.findViewById<TextView>(R.id.toolbar_text)
 
-        val toolbarText = activity!!.findViewById<TextView>(R.id.toolbar_text)
-        toolbarText.setText(R.string.help)
+            toolbar.menu.clear()
+            toolbarText.setText(R.string.help)
+        }
 
         group = view.findViewById(R.id.categoriesGroup)
         categoriesBar = view.findViewById(R.id.categoriesProgress)
@@ -58,6 +60,7 @@ class CategoriesOfHelpFragment : Fragment() {
         val resources = resources
         recyclerCategories.addItemDecoration(Decorator(
                 resources.getDimension(R.dimen.margin_item)))
+
         return view
     }
 
@@ -91,7 +94,6 @@ class CategoriesOfHelpFragment : Fragment() {
         return Flowable.just(Parser().getCategories(context!!))
     }
 
-
     private fun fileSubscriber(): DisposableSubscriber<ArrayList<Category?>> {
         return object : DisposableSubscriber<ArrayList<Category?>>() {
             override fun onComplete() {
@@ -108,7 +110,6 @@ class CategoriesOfHelpFragment : Fragment() {
 
             override fun onError(t: Throwable?) {
             }
-
         }
     }
 }
