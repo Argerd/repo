@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextSearchView: EditText
     private lateinit var helpText: TextView
     private var listCategories: ArrayList<Category>? = null
-    //private lateinit var progressBar: ProgressBar
+    /*private lateinit var progressBar: ProgressBar
     private lateinit var fragmentContainer: FrameLayout
-    private lateinit var taskCategories: AsyncTaskCategoriesParsing
+    private lateinit var taskCategories: AsyncTaskCategoriesParsing*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -110,7 +110,8 @@ class NewsFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(SAVE_LIST, validEvents)
+        /*outState.clear()
+        outState.putParcelableArrayList(SAVE_LIST, validEvents)*/
         Log.d(TAG, "valid size before ${validEvents?.size}")
     }
 }

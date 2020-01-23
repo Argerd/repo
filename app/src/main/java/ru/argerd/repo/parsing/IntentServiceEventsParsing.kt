@@ -1,9 +1,7 @@
 package ru.argerd.repo.parsing
 
 import android.app.IntentService
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Message
 import android.os.Messenger
 import android.util.Log
@@ -20,7 +18,7 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
 
     /*private var settings: List<String>? = null
     private var validEvents: ArrayList<Event> = ArrayList()*/
-    private lateinit var listEvents: ArrayList<Event>
+    private lateinit var listEvents: ArrayList<Event?>
     private val parser = Parser()
     // private var sharedPreferences: SharedPreferences? = null
 
@@ -29,7 +27,7 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
 
         settings = sharedPreferences?.all?.keys?.distinct()*/
 
-       // listEvents = parser.getEvents(application)
+        // listEvents = parser.getEvents(application)
 
         /*settings?.let { settings ->
             if (settings.isEmpty()) {
@@ -52,7 +50,8 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
                 }
             }
         }*/
-        Thread.sleep(5000)
+        listEvents = parser.getEvents(application)
+        //Thread.sleep(5000)
         Log.d("NewsScreen", "async valid events size ${listEvents.size}")
         intent?.let {
             val bundle = it.extras

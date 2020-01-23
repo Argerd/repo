@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import org.threeten.bp.LocalDate
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
 
@@ -21,7 +20,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
     val picasso: Picasso = Picasso.get()
 
     init {
-        picasso.setIndicatorsEnabled(true)
+        picasso.setIndicatorsEnabled(false)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -76,7 +75,8 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
 
         private fun setDate() {
             event.endDate?.let {
-                val date = LocalDate.of(
+                date.text = (it.toLong() / 20).toString()
+                /*val date = LocalDate.of(
                         it.substringBefore("-").toInt(),
                         it.substringAfterLast("-").toInt(),
                         it.substringBeforeLast("-").substringAfter("-").toInt()
@@ -139,7 +139,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
                             it.substringBeforeLast("-").substringAfter("-") +
                             ", " + it.substringBefore("-")
                     this.date.text = text
-                }
+                }*/
             }
         }
     }

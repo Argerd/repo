@@ -34,6 +34,7 @@ class DetailScreenActivity : AppCompatActivity() {
         val eventContent: TextView = findViewById(R.id.event_content)
 
         val picasso = Picasso.get()
+        picasso.setIndicatorsEnabled(false)
         val firstPhoto: ImageView = findViewById(R.id.firstPhoto)
         val secondPhoto: ImageView = findViewById(R.id.secondPhoto)
         val thirdPhoto: ImageView = findViewById(R.id.thirdPhoto)
