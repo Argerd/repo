@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.703163" />
+        app:layout_constraintGuide_percent="0.7055961" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -224,36 +224,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:adjustViewBounds="true"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                android:contentDescription="TODO"
+                app:layout_constraintEnd_toStartOf="@+id/start_gradient2"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/questions"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/questions" />
 
             <ImageView
                 android:id="@+id/thirdPhoto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
                 android:adjustViewBounds="true"
-                app:layout_constraintBottom_toBottomOf="@+id/firstPhoto"
+                app:layout_constraintBottom_toTopOf="@+id/event_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/firstPhoto"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintStart_toStartOf="@+id/start_gradient2"
+                app:layout_constraintTop_toBottomOf="@+id/secondPhoto" />
 
             <ImageView
                 android:id="@+id/secondPhoto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
                 android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@+id/thirdPhoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/firstPhoto"
-                app:layout_constraintTop_toTopOf="@+id/firstPhoto"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintStart_toStartOf="@+id/start_gradient2"
+                app:layout_constraintTop_toBottomOf="@+id/write_me" />
 
             <TextView
                 android:id="@+id/text_content"
@@ -284,11 +282,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/roboto_regular"
                 android:lineSpacingExtra="6sp"
                 android:textColor="@color/black_70"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/thirdPhoto"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/firstPhoto" />
 

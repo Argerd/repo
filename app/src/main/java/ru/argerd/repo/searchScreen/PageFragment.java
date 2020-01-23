@@ -116,8 +116,8 @@ public class PageFragment extends Fragment {
         List<Event> events = new Parser().getEvents(getContext());
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getTitle().toLowerCase().contains(input)) {
-                result.add(events.get(i).getTitle());
+            if (events.get(i).getName().toLowerCase().contains(input)) {
+                result.add(events.get(i).getName());
             }
         }
         return result;

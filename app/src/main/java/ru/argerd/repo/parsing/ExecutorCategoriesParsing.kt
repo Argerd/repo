@@ -15,7 +15,7 @@ internal class ExecutorCategoriesParsing(
     private val executor: Executor = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
 
-    fun execute() {
+    /*fun execute() {
         executor.execute {
             context?.let {
                 val listOfCategories = Parser().getCategories(it)
@@ -26,5 +26,5 @@ internal class ExecutorCategoriesParsing(
                 }
             }
         }
-    }
+    }*/
 }

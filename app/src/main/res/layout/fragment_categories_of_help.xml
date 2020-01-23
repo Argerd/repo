@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!--<androidx.appcompat.widget.Toolbar
-        android:id="@+id/help_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/turtle_green"
-        android:theme="?attr/actionBarTheme"
+    <ProgressBar
+        android:id="@+id/categoriesProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/TextStyle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/officina_sans_extra_bold_scc"
-            android:text="@string/help" />
-    </androidx.appcompat.widget.Toolbar>-->
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/choose_category_of_help_text"
@@ -44,4 +36,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_category_of_help_text" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/categoriesGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="recycler_categories,choose_category_of_help_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

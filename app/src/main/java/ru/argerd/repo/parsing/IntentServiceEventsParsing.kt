@@ -1,9 +1,7 @@
 package ru.argerd.repo.parsing
 
 import android.app.IntentService
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Message
 import android.os.Messenger
 import android.util.Log
@@ -18,20 +16,20 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
         const val LIST_EXTRA = "list"
     }
 
-    private var settings: List<String>? = null
-    private var validEvents: ArrayList<Event> = ArrayList()
-    private lateinit var listEvents: ArrayList<Event>
+    /*private var settings: List<String>? = null
+    private var validEvents: ArrayList<Event> = ArrayList()*/
+    private lateinit var listEvents: ArrayList<Event?>
     private val parser = Parser()
-    private var sharedPreferences: SharedPreferences? = null
+    // private var sharedPreferences: SharedPreferences? = null
 
     override fun onHandleIntent(intent: Intent?) {
-        sharedPreferences = application.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
+        /*sharedPreferences = application.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
 
-        settings = sharedPreferences?.all?.keys?.distinct()
+        settings = sharedPreferences?.all?.keys?.distinct()*/
 
-        listEvents = parser.getEvents(application)
+        // listEvents = parser.getEvents(application)
 
-        settings?.let { settings ->
+        /*settings?.let { settings ->
             if (settings.isEmpty()) {
                 validEvents = listEvents
             } else {
@@ -51,14 +49,15 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
                     }
                 }
             }
-        }
-        Thread.sleep(5000)
-        Log.d("NewsScreen", "async valid events size ${validEvents.size}")
+        }*/
+        listEvents = parser.getEvents(application)
+        //Thread.sleep(5000)
+        Log.d("NewsScreen", "async valid events size ${listEvents.size}")
         intent?.let {
             val bundle = it.extras
             val messenger: Messenger = bundle?.get(MESSENGER_EXTRA) as Messenger
             val message = Message.obtain()
-            bundle.putParcelableArrayList(LIST_EXTRA, validEvents)
+            bundle.putParcelableArrayList(LIST_EXTRA, listEvents)
             message.data = bundle
             try {
                 messenger.send(message)

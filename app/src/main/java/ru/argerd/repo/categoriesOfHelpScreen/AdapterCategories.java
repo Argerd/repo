@@ -10,17 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
 import ru.argerd.repo.R;
+import ru.argerd.repo.model.Category;
 
 class AdapterCategories extends RecyclerView.Adapter {
+    private Picasso picasso = Picasso.get();
     private Context context;
-    private int[] images;
-    private String[] namesCategories;
+    private List<Category> listOfCategories;
 
-    AdapterCategories(Context context, int[] images, String[] namesCategories) {
+    AdapterCategories(Context context) {
         this.context = context;
-        this.images = images;
-        this.namesCategories = namesCategories;
+    }
+
+    void setListOfCategories(List<Category> listOfCategories) {
+        this.listOfCategories = listOfCategories;
     }
 
     @NonNull
@@ -34,7 +41,8 @@ class AdapterCategories extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CategoriesHolder) {
-            ((CategoriesHolder) holder).bind(images[position], namesCategories[position], position);
+            ((CategoriesHolder) holder).bind(listOfCategories.get(position).getImage(),
+                    listOfCategories.get(position).getName());
         }
     }
 
@@ -53,8 +61,8 @@ class AdapterCategories extends RecyclerView.Adapter {
             this.nameCategory = itemView.findViewById(R.id.help_category_text);
         }
 
-        void bind(int image, String nameCategory, int position) {
-            this.image.setImageResource(image);
+        void bind(String image, String nameCategory) {
+            picasso.load(image).into(this.image);
             this.nameCategory.setText(nameCategory);
         }
     }

@@ -29,7 +29,7 @@ internal class NewsDiffUtils(
         if (oldList != null && newList != null) {
             val oldEvent = oldList[oldItemPosition]
             val newEvent = newList[newItemPosition]
-            return oldEvent.title == newEvent.title && oldEvent.content == newEvent.content
+            return oldEvent.name == newEvent.name && oldEvent.description == newEvent.description
         }
         return false
     }

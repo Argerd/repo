@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import org.threeten.bp.LocalDate
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
 
@@ -21,7 +20,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
     val picasso: Picasso = Picasso.get()
 
     init {
-        picasso.setIndicatorsEnabled(true)
+        picasso.setIndicatorsEnabled(false)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -55,15 +54,15 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
         }
 
         fun bind(event: Event) {
-            photoFileName = itemView.context.filesDir.toString() + "/${event.title}/firstPhoto"
+            photoFileName = itemView.context.filesDir.toString() + "/${event.name}/firstPhoto"
             this.event = event
             event.photos?.let { list ->
                 list[0]?.let { photo ->
                     picasso.load(photo).into(this.photo)
                 }
             }
-            this.title.text = event.title
-            this.newsContent.text = event.content
+            this.title.text = event.name
+            this.newsContent.text = event.description
             setDate()
         }
 
@@ -75,8 +74,9 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
         }
 
         private fun setDate() {
-            event.date?.let {
-                val date = LocalDate.of(
+            event.endDate?.let {
+                date.text = (it.toLong() / 20).toString()
+                /*val date = LocalDate.of(
                         it.substringBefore("-").toInt(),
                         it.substringAfterLast("-").toInt(),
                         it.substringBeforeLast("-").substringAfter("-").toInt()
@@ -139,7 +139,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
                             it.substringBeforeLast("-").substringAfter("-") +
                             ", " + it.substringBefore("-")
                     this.date.text = text
-                }
+                }*/
             }
         }
     }
