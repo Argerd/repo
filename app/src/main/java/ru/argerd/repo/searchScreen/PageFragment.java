@@ -78,8 +78,11 @@ public class PageFragment extends Fragment {
                     .skipInitialValue()
                     .debounce(500, TimeUnit.MILLISECONDS)
                     .switchMap(seq -> {
+                        Log.d(TAG, "seq.length = " + seq.length());
                         String input = seq.toString();
-                        Log.d(TAG, "" + input.length());
+                        Log.d(TAG, "input.length = " + input.length());
+                        Log.d(TAG, "switchMap" +
+                                " current thread " + Thread.currentThread().getName());
                         return Observable.just(getSearchResult(input));
                     })
                     .observeOn(AndroidSchedulers.mainThread())
@@ -113,12 +116,14 @@ public class PageFragment extends Fragment {
 
     private ArrayList<String> getSearchResult(String input) {
         Log.d(TAG, "getSearch");
+        Log.d(TAG, "get search current thread " + Thread.currentThread().getName());
         List<Event> events = new Parser().getEvents(getContext());
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getName().toLowerCase().contains(input)) {
-                result.add(events.get(i).getName());
-            }
+            if (events.get(i).getName() != null)
+                if (events.get(i).getName().toLowerCase().contains(input)) {
+                    result.add(events.get(i).getName());
+                }
         }
         return result;
     }
