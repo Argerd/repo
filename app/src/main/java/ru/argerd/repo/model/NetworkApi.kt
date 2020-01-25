@@ -9,5 +9,5 @@ interface NetworkApi {
     fun getEvents()
 
     @GET("categories.json")
-    fun getCategories(): Flowable<ArrayList<Category?>>
+    fun getCategories(): Flowable<ArrayList<Category>>
 }

@@ -1,10 +1,15 @@
 package ru.argerd.repo.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Category(var id: Int?,
-                    var name: String?,
-                    var image: String,
-                    var name_en: String?) : Parcelable
+@Entity
+data class Category(
+        @PrimaryKey
+        var id: Int?,
+        var name: String?,
+        var image: String?,
+        var name_en: String?) : Parcelable
