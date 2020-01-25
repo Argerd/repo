@@ -5,8 +5,8 @@ import androidx.room.TypeConverter
 class EventConverter {
 
     @TypeConverter
-    fun fromPhotos(photos: List<String>): String {
-        return photos.joinToString()
+    fun fromPhotos(photos: List<String?>?): String {
+        return photos?.joinToString() ?: ""
     }
 
     @TypeConverter

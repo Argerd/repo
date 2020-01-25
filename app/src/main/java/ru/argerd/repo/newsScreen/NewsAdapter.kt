@@ -15,9 +15,10 @@ import ru.argerd.repo.model.Event
 private const val EVENT_EXTRA = "title"
 private const val DAYS_EXTRA = "days"
 
-internal class NewsAdapter(internal var events: ArrayList<Event>?)
+internal class NewsAdapter
     : RecyclerView.Adapter<NewsAdapter.Holder>() {
     val picasso: Picasso = Picasso.get()
+    internal var events: List<Event> = ArrayList()
 
     init {
         picasso.setIndicatorsEnabled(false)
@@ -29,13 +30,13 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        events?.let {
+        events.let {
             holder.bind(it[position])
         }
     }
 
     override fun getItemCount(): Int {
-        return events?.size ?: 0
+        return events.size
     }
 
     internal inner class Holder(itemView: View)
@@ -56,6 +57,7 @@ internal class NewsAdapter(internal var events: ArrayList<Event>?)
         fun bind(event: Event) {
             photoFileName = itemView.context.filesDir.toString() + "/${event.name}/firstPhoto"
             this.event = event
+
             event.photos?.let { list ->
                 list[0]?.let { photo ->
                     picasso.load(photo).into(this.photo)

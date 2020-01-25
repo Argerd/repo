@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -55,6 +56,7 @@ class CategoriesOfHelpFragment : Fragment() {
         adapter = AdapterCategories(context)
 
         if (App.firstOpenCategory) {
+            Log.d(TAG, "запрос к сети")
             App.api.getCategories()
                     .map {
                         Log.d(TAG, "запрос к сети")
@@ -64,12 +66,14 @@ class CategoriesOfHelpFragment : Fragment() {
                     }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(networkSubscription())
+                    .subscribe(dataSubscription())
+            App.firstOpenCategory = false
         } else {
+            Log.d(TAG, "чтение из бд")
             App.database.categoryDao.getCategories()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(databaseSubscription())
+                    .subscribe(dataSubscription())
         }
 
 
@@ -80,80 +84,36 @@ class CategoriesOfHelpFragment : Fragment() {
         return view
     }
 
-    private fun networkSubscription(): DisposableSubscriber<List<Category?>> {
+    private fun flowableFileParse(): Flowable<List<Category?>> {
+        return Flowable.create({ emitter -> emitter.onNext(Parser().getCategories(context!!)) },
+                BackpressureStrategy.LATEST)
+    }
+
+    private fun dataSubscription(): DisposableSubscriber<List<Category?>> {
         return object : DisposableSubscriber<List<Category?>>() {
             override fun onComplete() {
-                recyclerCategories.adapter = adapter
-                group.visibility = View.VISIBLE
-                categoriesBar.visibility = View.GONE
-                App.firstOpenCategory = false
+
             }
 
             override fun onNext(t: List<Category?>?) {
+                Log.d(TAG, "размер листа ${t?.size}")
                 listOfCategory = t ?: ArrayList()
                 adapter.setListOfCategories(listOfCategory)
                 adapter.notifyDataSetChanged()
+                recyclerCategories.adapter = adapter
+                group.visibility = View.VISIBLE
+                categoriesBar.visibility = View.GONE
             }
 
             override fun onError(t: Throwable?) {
+                Log.d(TAG, t.toString())
                 view?.let {
-                    Snackbar.make(it, R.string.error_network, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(it, t.toString(), Snackbar.LENGTH_LONG).show()
                 }
                 flowableFileParse()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(fileSubscription())
-            }
-        }
-    }
-
-    private fun flowableFileParse(): Flowable<List<Category?>> {
-        return Flowable.just(Parser().getCategories(context!!))
-    }
-
-    private fun fileSubscription(): DisposableSubscriber<List<Category?>> {
-        return object : DisposableSubscriber<List<Category?>>() {
-            override fun onComplete() {
-                Log.d(TAG, "parsing file complete")
-                recyclerCategories.adapter = adapter
-                group.visibility = View.VISIBLE
-                categoriesBar.visibility = View.GONE
-            }
-
-            override fun onNext(t: List<Category?>?) {
-                listOfCategory = t ?: ArrayList()
-                adapter.setListOfCategories(listOfCategory)
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onError(t: Throwable?) {
-                Log.d(TAG, "error parsing ${t?.message}")
-            }
-        }
-    }
-
-    private fun databaseSubscription(): DisposableSubscriber<List<Category?>> {
-        return object : DisposableSubscriber<List<Category?>>() {
-            override fun onComplete() {
-
-            }
-
-            override fun onNext(t: List<Category?>?) {
-                Log.d(TAG, "размер листа из бд ${t?.size}")
-                listOfCategory = t ?: ArrayList()
-                adapter.setListOfCategories(listOfCategory)
-                adapter.notifyDataSetChanged()
-                Log.d(TAG, "чтение из бд окончено")
-                recyclerCategories.adapter = adapter
-                group.visibility = View.VISIBLE
-                categoriesBar.visibility = View.GONE
-            }
-
-            override fun onError(t: Throwable?) {
-                Log.d(TAG, "ошибка чтения из бд")
-                view?.let {
-                    Snackbar.make(it, R.string.database_error, Snackbar.LENGTH_LONG).show()
-                }
+                        .subscribe(dataSubscription())
             }
 
         }

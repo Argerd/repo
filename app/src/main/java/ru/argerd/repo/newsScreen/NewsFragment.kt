@@ -1,9 +1,6 @@
 package ru.argerd.repo.newsScreen
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Messenger
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +11,23 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subscribers.DisposableSubscriber
+import ru.argerd.repo.App
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
-import ru.argerd.repo.parsing.ExecutorEventsParsing
-import ru.argerd.repo.parsing.IntentServiceEventsParsing
+import ru.argerd.repo.parsing.Parser
 
-private const val SAVE_LIST = "save_list"
 private const val TAG = "NewsFragment"
 
 class NewsFragment : Fragment() {
     private var newsAdapter: NewsAdapter? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
-    //private lateinit var asyncTaskParsing: AsyncTaskEventsParsing
-    private lateinit var executorParsing: ExecutorEventsParsing
-    private var validEvents: ArrayList<Event>? = null
+    private var validEvents: List<Event>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,73 +44,54 @@ class NewsFragment : Fragment() {
 
         activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.news)
 
-        if (savedInstanceState != null) {
-            validEvents = savedInstanceState.getParcelableArrayList(SAVE_LIST)
-            updateRecycler()
+        if (App.firstOpenEventsNews) {
+            flowableForFile()
+                    .map {
+                        App.database.eventDao.deleteAllEvents()
+                        App.database.eventDao.insertListEvents(it)
+                        return@map it
+                    }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(dataSubscription())
+            App.firstOpenEventsNews = false
         } else {
-            // Вариант с IntentService
-            val handler = Handler {
-                val replyBundle = it.data
-                callbackForUpdate(
-                        replyBundle
-                                .getParcelableArrayList<Event>(IntentServiceEventsParsing.LIST_EXTRA)
-                                ?: ArrayList())
-                true
-            }
-            val intent = Intent(context, IntentServiceEventsParsing::class.java)
-            intent.putExtra(IntentServiceEventsParsing.MESSENGER_EXTRA, Messenger(handler))
-            activity?.startService(intent)
-            // Вариант с Executor
-            /* executorParsing = ExecutorEventsParsing(context) { arg -> callbackForUpdate(arg) }
-             executorParsing.execute()*/
-
-            // Вариант с AsyncTask
-            /*asyncTaskParsing = AsyncTaskEventsParsing(context) { arg -> callbackForUpdate(arg)}
-            asyncTaskParsing.execute()*/
+            Log.d(TAG, "db")
+            App.database.eventDao.getAllEvents()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(dataSubscription())
         }
 
         return view
     }
 
-    private fun callbackForUpdate(validEvents: ArrayList<Event>) {
-        this.validEvents = validEvents
-        progressBar.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-        if (newsAdapter == null) {
-            newsAdapter = NewsAdapter(validEvents)
-            recyclerView.adapter = newsAdapter
-        } else {
-            newsAdapter?.let {
-                val utils = NewsDiffUtils(it.events, validEvents)
-                val utilsResult = DiffUtil.calculateDiff(utils)
-                it.events = validEvents
-                utilsResult.dispatchUpdatesTo(it)
-                recyclerView.adapter = it
-            }
-        }
+    private fun flowableForFile(): Flowable<List<Event>> {
+        return Flowable.create({ emitter -> emitter.onNext(Parser().getEvents(context!!)) },
+                BackpressureStrategy.LATEST)
     }
 
-    private fun updateRecycler() {
-        progressBar.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-        if (newsAdapter == null) {
-            newsAdapter = NewsAdapter(validEvents)
-            recyclerView.adapter = newsAdapter
-        } else {
-            newsAdapter?.let {
-                val utils = NewsDiffUtils(it.events, validEvents)
+    private fun dataSubscription(): DisposableSubscriber<List<Event>> {
+        return object : DisposableSubscriber<List<Event>>() {
+            override fun onComplete() {
+            }
+
+            override fun onNext(t: List<Event>?) {
+                validEvents = t ?: ArrayList()
+                newsAdapter = NewsAdapter()
+                val utils = NewsDiffUtils(newsAdapter?.events, validEvents)
                 val utilsResult = DiffUtil.calculateDiff(utils)
-                it.events = validEvents
-                utilsResult.dispatchUpdatesTo(it)
-                recyclerView.adapter = it
+                newsAdapter?.events = validEvents ?: ArrayList()
+                utilsResult.dispatchUpdatesTo(newsAdapter!!)
+                recyclerView.adapter = newsAdapter
+                progressBar.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                recyclerView.adapter = newsAdapter
+            }
+
+            override fun onError(t: Throwable?) {
+                Log.d(TAG, "error sub ${t?.message}")
             }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        /*outState.clear()
-        outState.putParcelableArrayList(SAVE_LIST, validEvents)*/
-        Log.d(TAG, "valid size before ${validEvents?.size}")
     }
 }

@@ -50,7 +50,7 @@ class IntentServiceEventsParsing : IntentService("IntentServiceEventsParsing") {
                 }
             }
         }*/
-        listEvents = parser.getEvents(application)
+        //listEvents = parser.getEvents(application)
         //Thread.sleep(5000)
         Log.d("NewsScreen", "async valid events size ${listEvents.size}")
         intent?.let {

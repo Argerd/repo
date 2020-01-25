@@ -16,7 +16,4 @@ interface CategoryDao {
 
     @Query("delete from category")
     fun deleteAllCategories()
-
-    @Query("select count(*) from category")
-    fun getRowCount(): Flowable<Int>
 }

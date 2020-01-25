@@ -27,7 +27,7 @@ class Parser {
         return Gson().fromJson<ArrayList<Category?>>(json, categoriesType)
     }
 
-    fun getEvents(context: Context): ArrayList<Event?> {
+    fun getEvents(context: Context): ArrayList<Event> {
         val json: String
         try {
             val inputStream = context.assets.open("1")
@@ -35,6 +35,6 @@ class Parser {
         } catch (e: Exception) {
             return arrayListOf()
         }
-        return Gson().fromJson<ArrayList<Event?>>(json, eventsType)
+        return Gson().fromJson<ArrayList<Event>>(json, eventsType)
     }
 }

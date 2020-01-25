@@ -4,8 +4,8 @@ import androidx.recyclerview.widget.DiffUtil
 import ru.argerd.repo.model.Event
 
 internal class NewsDiffUtils(
-        private val oldList: ArrayList<Event>?,
-        private val newList: ArrayList<Event>?
+        private val oldList: List<Event>?,
+        private val newList: List<Event>?
 ) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

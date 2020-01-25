@@ -1,10 +1,8 @@
 package ru.argerd.repo.model
 
 import android.os.Parcelable
-import android.util.EventLog
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import kotlinx.android.parcel.Parcelize
 
