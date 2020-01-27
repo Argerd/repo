@@ -1,6 +1,7 @@
 package ru.argerd.repo
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -16,6 +17,7 @@ class App : Application() {
         var firstOpenEventsNews = true
         lateinit var api: NetworkApi
         lateinit var database: AppDatabase
+        lateinit var context: Context
     }
 
     override fun onCreate() {
@@ -32,5 +34,7 @@ class App : Application() {
 
         database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
                 .build()
+
+        context = this
     }
 }

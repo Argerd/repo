@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import ru.argerd.repo.App
 import ru.argerd.repo.model.Category
 import ru.argerd.repo.model.Event
 
@@ -12,8 +13,9 @@ private const val TAG = "MyParser"
 class Parser {
     private val categoriesType = object : TypeToken<List<Category>>() {}.type
     private val eventsType = object : TypeToken<List<Event>>() {}.type
+    private val context = App.context
 
-    fun getCategories(context: Context): ArrayList<Category?> {
+    fun getCategories(): ArrayList<Category?> {
         val json: String
         try {
             val inputStream = context.assets.open("2")

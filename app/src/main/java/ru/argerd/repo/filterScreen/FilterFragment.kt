@@ -1,25 +1,25 @@
 package ru.argerd.repo.filterScreen
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import moxy.MvpAppCompatFragment
+import moxy.presenter.InjectPresenter
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Category
 
-private const val FILTER_SETTINGS = "filterSettings"
-const val ARG_CATEGORIES = "categories"
-
-class FilterFragment : Fragment() {
+class FilterFragment : MvpAppCompatFragment(), FilterView {
     private lateinit var listOfFilter: RecyclerView
     private var toolbar: Toolbar? = null
+    private lateinit var adapterFilter: AdapterFilter
+
+    @InjectPresenter
+    lateinit var presenter: FilterPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,16 +27,14 @@ class FilterFragment : Fragment() {
 
         listOfFilter = view.findViewById(R.id.list_of_categories)
 
-        val list = arguments?.getParcelableArrayList<Category>(ARG_CATEGORIES)
-
-        val sharedPreferences = activity?.getSharedPreferences(FILTER_SETTINGS, Context.MODE_PRIVATE)
-        val settings = sharedPreferences?.all?.keys?.distinct()
-        val editor = sharedPreferences?.edit()
+        adapterFilter = AdapterFilter { arg, arg1 -> presenter.onSwitchCategory(arg, arg1) }
 
         listOfFilter.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = AdapterFilter(list ?: arrayListOf(), editor, settings)
+            adapter = adapterFilter
         }
+
+        presenter.showList()
 
         activity?.findViewById<TextView>(R.id.toolbar_text)?.setText(R.string.filter)
         toolbar = activity?.findViewById(R.id.toolbar)
@@ -52,7 +50,7 @@ class FilterFragment : Fragment() {
             setNavigationIcon(R.drawable.ic_back)
             setOnMenuItemClickListener {
                 if (it.itemId == R.id.filter_ok) {
-                    editor?.apply()
+                    presenter.applyChanges()
                 }
                 return@setOnMenuItemClickListener true
             }
@@ -64,5 +62,11 @@ class FilterFragment : Fragment() {
     override fun onPause() {
         toolbar?.navigationIcon = null
         super.onPause()
+    }
+
+    override fun showList(t: List<Category>?, settings: List<String>) {
+        adapterFilter.categories = t ?: listOf()
+        adapterFilter.settings = settings
+        adapterFilter.notifyDataSetChanged()
     }
 }

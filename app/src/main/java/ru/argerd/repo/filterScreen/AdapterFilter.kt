@@ -1,6 +1,5 @@
 package ru.argerd.repo.filterScreen
 
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Category
 
-internal class AdapterFilter(
-        private val categories: ArrayList<Category>,
-        private val editor: SharedPreferences.Editor?,
-        private val settings: List<String>?
-) : RecyclerView.Adapter<AdapterFilter.Holder>() {
+internal class AdapterFilter(private val onSwitchCategory: (isChecked: Boolean,
+                                                            nameOfCategories: String) -> Unit)
+    : RecyclerView.Adapter<AdapterFilter.Holder>() {
+
+    companion object {
+        private const val TAG = "HolderFilter"
+    }
+
+    var categories: List<Category>? = null
+    var settings: List<String>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(LayoutInflater.from(parent.context)
@@ -22,21 +26,23 @@ internal class AdapterFilter(
     }
 
     override fun getItemCount(): Int {
-        return categories.size
+        return categories?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val name = categories[position].name
-        var checked = false
-        settings?.let {
-            if (it.contains(name)) {
-                checked = true
+        categories?.let { it ->
+            val name = it[position].name
+            var checked = false
+            settings?.let { settings ->
+                if (settings.contains(name)) {
+                    checked = true
+                }
             }
-        }
-        if (name != null) {
-            holder.bind(name, checked)
-        } else {
-            holder.bind("", checked)
+            if (name != null) {
+                holder.bind(name, checked)
+            } else {
+                holder.bind("", checked)
+            }
         }
     }
 
@@ -48,11 +54,7 @@ internal class AdapterFilter(
             switch.isChecked = checked
             this.nameOfCategories.text = nameOfCategories
             switch.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    editor?.putString(nameOfCategories, "")
-                } else {
-                    editor?.remove(nameOfCategories)
-                }
+                onSwitchCategory(isChecked, nameOfCategories)
             }
         }
     }

@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,12 +15,8 @@ import androidx.navigation.Navigation
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import ru.argerd.repo.filterScreen.ARG_CATEGORIES
-import ru.argerd.repo.model.Category
-import ru.argerd.repo.parsing.AsyncTaskCategoriesParsing
 
 private const val TAG = "MainActivity"
-private const val SAVED_CATEGORIES = "save"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigation: BottomNavigationView
@@ -32,44 +27,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView: SimpleSearchView
     private lateinit var editTextSearchView: EditText
     private lateinit var helpText: TextView
-    private var listCategories: ArrayList<Category>? = null
-    /*private lateinit var progressBar: ProgressBar
-    private lateinit var fragmentContainer: FrameLayout
-    private lateinit var taskCategories: AsyncTaskCategoriesParsing*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "inOnCreate")
         setContentView(R.layout.activity_main)
-
-        //progressBar = findViewById(R.id.progressBarCategories)
-        /*fragmentContainer = findViewById(R.id.fragment_container)
-        fragmentContainer.visibility = View.GONE*/
-
-        //if (savedInstanceState != null) {
-        // listCategories = savedInstanceState.getParcelableArrayList(SAVED_CATEGORIES)
-        //  progressBar.visibility = View.GONE
-        //  fragmentContainer.visibility = View.VISIBLE
-        // Log.d(TAG, "after restore ${listCategories?.size ?: -1}")
-        //} //else {
-        // Вариант с IntentService
-        /*val handler = Handler {
-            val replyBundle = it.data
-            listCategories = replyBundle
-                    .getParcelableArrayList(IntentServiceCategoriesParsing.LIST_EXTRA)
-            progressBar.visibility = View.GONE
-            fragmentContainer.visibility = View.VISIBLE
-            true
-        }
-        val intent = Intent(this, IntentServiceCategoriesParsing::class.java)
-        intent.putExtra(IntentServiceCategoriesParsing.MESSENGER_EXTRA, Messenger(handler))
-        startService(intent)*/
-        // Вариант с Executor
-        //ExecutorCategoriesParsing(this) { arg -> callbackForExecutor(arg) }.execute()
-        // Вариант с AsyncTask
-        /*taskCategories = AsyncTaskCategoriesParsing(this) { callbackForAsyncTask() }
-        taskCategories.execute()*/
-        //}
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
@@ -123,7 +85,6 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.newsScreen)
                         setVisibilityToolbarText()
                         setColorHelpText(false)
-                        setToolbarForNews()
                     }
                 }
             }
@@ -138,23 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d(TAG, "before saving ${listCategories?.size ?: -1}")
-        outState.putParcelableArrayList(SAVED_CATEGORIES, listCategories)
     }
-
-    /*private fun callbackForExecutor(list: ArrayList<Category>?) {
-        this.listCategories = list
-       progressBar.visibility = View.GONE
-        fragmentContainer.visibility = View.VISIBLE
-        Log.d(TAG, "after update ${listCategories?.size ?: -1}")
-    }
-
-    private fun callbackForAsyncTask() {
-        progressBar.visibility = View.GONE
-        fragmentContainer.visibility = View.VISIBLE
-        listCategories = taskCategories.get()
-        Log.d(TAG, "after update ${listCategories?.size ?: -1}")
-    }*/
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -186,21 +131,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setToolbarForNews() {
-        toolbar.apply {
-            menu.clear()
-            inflateMenu(R.menu.filter_of_news_menu)
-            setOnMenuItemClickListener {
-                val bundle = Bundle()
-                menu.clear()
-                bundle.putParcelableArrayList(ARG_CATEGORIES,
-                        listCategories)
-                navController.navigate(R.id.filterFragment, bundle)
-                return@setOnMenuItemClickListener true
-            }
-        }
-    }
-
     private fun updateUI() {
         navController.currentDestination?.let {
             when (it.id) {
@@ -208,7 +138,6 @@ class MainActivity : AppCompatActivity() {
                     bottomNavigation.menu.getItem(0).isChecked = true
                     setVisibilityToolbarText()
                     setColorHelpText(false)
-                    setToolbarForNews()
                 }
                 R.id.filterFragment -> {
                     bottomNavigation.menu.getItem(0).isChecked = true

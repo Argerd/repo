@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +19,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.DisposableSubscriber
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.argerd.repo.App
 import ru.argerd.repo.R
 import ru.argerd.repo.model.Event
@@ -28,12 +32,24 @@ class NewsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private var validEvents: List<Event>? = null
+    private lateinit var toolbar: Toolbar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
 
         progressBar = view.findViewById(R.id.progressBarEvents)
+
+        toolbar = activity!!.findViewById(R.id.toolbar)
+        toolbar.apply {
+            menu.clear()
+            inflateMenu(R.menu.filter_of_news_menu)
+            setOnMenuItemClickListener {
+                menu.clear()
+                NavHostFragment.findNavController(nav_host_fragment).navigate(R.id.filterFragment)
+                return@setOnMenuItemClickListener true
+            }
+        }
 
         recyclerView = view.findViewById(R.id.news_list)
         recyclerView.apply {
