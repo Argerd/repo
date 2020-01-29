@@ -3,6 +3,7 @@ package ru.argerd.repo
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.argerd.repo.ui.AuthorizationActivity
 import java.util.*
 
 class SplashActivity : AppCompatActivity() {

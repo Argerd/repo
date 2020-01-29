@@ -1,6 +1,5 @@
 package ru.argerd.repo.parsing
 
-import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -29,7 +28,7 @@ class Parser {
         return Gson().fromJson<ArrayList<Category?>>(json, categoriesType)
     }
 
-    fun getEvents(context: Context): ArrayList<Event> {
+    fun getEvents(): ArrayList<Event> {
         val json: String
         try {
             val inputStream = context.assets.open("1")

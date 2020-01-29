@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import kotlinx.android.parcel.Parcelize
+import ru.argerd.repo.model.database.EventConverter
 
 @Parcelize
 @Entity
