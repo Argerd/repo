@@ -1,6 +1,7 @@
-package ru.argerd.repo
+package ru.argerd.repo.utils
 
 import android.content.Context
+import ru.argerd.repo.App
 
 class SharedPreferencesManager {
 

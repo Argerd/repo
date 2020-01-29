@@ -15,17 +15,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
-import ru.argerd.repo.BitmapWorking;
+import moxy.MvpAppCompatFragment;
+import moxy.presenter.InjectPresenter;
 import ru.argerd.repo.R;
+import ru.argerd.repo.presenters.ProfilePresenter;
+import ru.argerd.repo.utils.BitmapWorking;
+import ru.argerd.repo.views.ProfileView;
 
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends MvpAppCompatFragment implements View.OnClickListener,
+        ProfileView {
     private static final String TAG = ProfileFragment.class.toString();
     private static final int REQUEST_PHOTO = 11;
 
@@ -36,6 +40,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private View view;
 
     private Picasso picasso = Picasso.get();
+
+    @InjectPresenter
+    ProfilePresenter presenter;
 
     @Nullable
     @Override
@@ -73,11 +80,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.photo_profile:
-                Log.d(TAG, "photoProfileClicked");
-                DialogFragment dialogFragment = new PhotoOfProfileDialogFragment();
-                dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
-                dialogFragment.show(getParentFragmentManager(),
-                        dialogFragment.getClass().getName());
+                presenter.moveToDialogFragmentForChoose();
         }
     }
 
@@ -118,5 +121,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         Snackbar.make(view,
                 R.string.error_write_to_file, Snackbar.LENGTH_LONG).show();
         setPhotoProfile();
+    }
+
+    @Override
+    public void moveToChoose() {
+        Log.d(TAG, "photoProfileClicked");
+        DialogFragment dialogFragment = new PhotoOfProfileDialogFragment();
+        dialogFragment.setTargetFragment(this, REQUEST_PHOTO);
+        dialogFragment.show(getParentFragmentManager(),
+                dialogFragment.getClass().getName());
     }
 }

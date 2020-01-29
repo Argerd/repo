@@ -1,4 +1,4 @@
-package ru.argerd.repo
+package ru.argerd.repo.utils
 
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import ru.argerd.repo.App.Companion.context
+import ru.argerd.repo.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

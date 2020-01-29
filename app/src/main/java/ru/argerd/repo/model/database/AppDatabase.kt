@@ -1,4 +1,4 @@
-package ru.argerd.repo
+package ru.argerd.repo.model.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.model.Event
-import ru.argerd.repo.parsing.Parser
+import ru.argerd.repo.utils.Parser
 import ru.argerd.repo.views.PageView
 import java.util.*
 

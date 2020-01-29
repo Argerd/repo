@@ -10,7 +10,7 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.App
 import ru.argerd.repo.model.Event
-import ru.argerd.repo.parsing.Parser
+import ru.argerd.repo.utils.Parser
 import ru.argerd.repo.views.NewsView
 
 @InjectViewState

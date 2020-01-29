@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="ru.argerd.repo.ui.detailDescriptionScreen.DetailScreenActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.SplashActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

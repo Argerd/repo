@@ -6,7 +6,7 @@ import io.reactivex.subscribers.DisposableSubscriber
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.App
-import ru.argerd.repo.SharedPreferencesManager
+import ru.argerd.repo.utils.SharedPreferencesManager
 import ru.argerd.repo.model.Category
 import ru.argerd.repo.views.FilterView
 
