@@ -7,8 +7,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.argerd.repo.model.NetworkApi
 import ru.argerd.repo.model.database.AppDatabase
-import ru.argerd.repo.model.database.NetworkApi
 
 class App : Application() {
     private lateinit var retrofit: Retrofit

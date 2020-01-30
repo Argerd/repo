@@ -6,17 +6,17 @@
     app:startDestination="@id/categoriesOfHelpFragment">
     <fragment
         android:id="@+id/categoriesOfHelpFragment"
-        android:name="ru.argerd.repo.ui.categoriesOfHelpScreen.CategoriesOfHelpFragment"
+        android:name="ru.argerd.repo.ui.CategoriesOfHelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_categories_of_help" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ru.argerd.repo.ui.profileScreen.ProfileFragment"
+        android:name="ru.argerd.repo.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="ru.argerd.repo.ui.searchScreen.SearchFragment"
+        android:name="ru.argerd.repo.ui.SearchFragment"
         android:label="fragmen_search"
         tools:layout="@layout/fragmen_search" />
     <navigation
@@ -24,17 +24,17 @@
         app:startDestination="@id/newsFragment" >
         <fragment
             android:id="@+id/filterFragment"
-            android:name="ru.argerd.repo.ui.filterScreen.FilterFragment"
+            android:name="ru.argerd.repo.ui.FilterFragment"
             android:label="fragment_filter"
             tools:layout="@layout/fragment_filter" />
         <fragment
             android:id="@+id/newsFragment"
-            android:name="ru.argerd.repo.ui.newsScreen.NewsFragment"
+            android:name="ru.argerd.repo.ui.NewsFragment"
             android:label="fragment_news"
             tools:layout="@layout/fragment_news" />
         <activity
             android:id="@+id/detailScreenActivity"
-            android:name="ru.argerd.repo.ui.detailDescriptionScreen.DetailScreenActivity"
+            android:name="ru.argerd.repo.ui.DetailScreenActivity"
             android:label="activity_detail_screen"
             tools:layout="@layout/activity_detail_screen" />
     </navigation>

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Flowable
-import ru.argerd.repo.model.Event
+import ru.argerd.repo.model.pojo.Event
 
 @Dao
 interface EventsDao {

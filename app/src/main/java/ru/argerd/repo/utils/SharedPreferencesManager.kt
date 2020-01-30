@@ -2,8 +2,10 @@ package ru.argerd.repo.utils
 
 import android.content.Context
 import ru.argerd.repo.App
+import javax.inject.Inject
 
-class SharedPreferencesManager {
+class SharedPreferencesManager
+@Inject constructor() {
 
     private companion object {
         private const val FILTER_SETTINGS = "filterSettings"

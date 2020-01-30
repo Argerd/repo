@@ -6,10 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
-import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import ru.argerd.repo.R

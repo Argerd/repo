@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Flowable
-import ru.argerd.repo.model.Category
+import ru.argerd.repo.model.pojo.Category
 
 @Dao
 interface CategoryDao {

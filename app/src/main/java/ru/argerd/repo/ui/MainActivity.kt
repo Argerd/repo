@@ -8,20 +8,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import ru.argerd.repo.R
 import ru.argerd.repo.presenters.MainActivityPresenter
 import ru.argerd.repo.views.MainActivityView
 
-private const val TAG = "MainActivity"
-
-class MainActivity : AppCompatActivity(), MainActivityView {
+class MainActivity : MvpAppCompatActivity(), MainActivityView {
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var navController: NavController
     private lateinit var fab: FloatingActionButton
@@ -29,6 +27,10 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     private lateinit var searchView: SimpleSearchView
     private lateinit var editTextSearchView: EditText
     private lateinit var helpText: TextView
+
+    private companion object {
+        private const val TAG = "MainActivity"
+    }
 
     @InjectPresenter
     lateinit var presenter: MainActivityPresenter

@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="ru.argerd.repo.ui.detailDescriptionScreen.DetailScreenActivity" />
+        <activity android:name="ru.argerd.repo.ui.DetailScreenActivity" />
         <activity
             android:name=".ui.SplashActivity"
             android:noHistory="true">
@@ -29,9 +29,6 @@
         <activity
             android:name=".ui.AuthorizationActivity"
             android:noHistory="true" />
-
-        <service android:name="ru.argerd.repo.parsing.IntentServiceCategoriesParsing" />
-        <service android:name=".parsing.IntentServiceEventsParsing" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
