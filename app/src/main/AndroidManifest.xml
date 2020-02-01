@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".detailDescriptionScreen.DetailScreenActivity" />
+        <activity android:name="ru.argerd.repo.ui.DetailScreenActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.SplashActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,13 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.MainActivity" />
         <activity
-            android:name=".AuthorizationActivity"
+            android:name=".ui.AuthorizationActivity"
             android:noHistory="true" />
-
-        <service android:name="ru.argerd.repo.parsing.IntentServiceCategoriesParsing" />
-        <service android:name=".parsing.IntentServiceEventsParsing" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

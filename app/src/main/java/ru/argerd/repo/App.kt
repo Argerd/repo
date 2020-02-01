@@ -1,29 +1,27 @@
 package ru.argerd.repo
 
 import android.app.Application
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import android.content.Context
 import com.jakewharton.threetenabp.AndroidThreeTen
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import ru.argerd.repo.model.NetworkApi
+import ru.argerd.repo.di.AppComponent
+import ru.argerd.repo.di.DaggerAppComponent
 
 class App : Application() {
-    private lateinit var retrofit: Retrofit
 
     companion object {
-        var api: NetworkApi? = null
+        var firstOpenCategory = true
+        var firstOpenEventsNews = true
+        lateinit var context: Context
+
+        lateinit var component: AppComponent
     }
 
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
 
-        retrofit = Retrofit.Builder()
-                .baseUrl("https://mentoring-35da2.firebaseio.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+        component = DaggerAppComponent.create()
 
-        api = retrofit.create(NetworkApi::class.java)
+        context = this
     }
 }
