@@ -3,6 +3,7 @@ package ru.argerd.repo.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
 
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
@@ -36,8 +36,6 @@ public class ProfileFragment extends MvpAppCompatFragment implements View.OnClic
     private ImageView photoProfile;
     private Resources resources;
     private View view;
-
-    private Picasso picasso = Picasso.get();
 
     @InjectPresenter
     ProfilePresenter presenter;
@@ -95,10 +93,11 @@ public class ProfileFragment extends MvpAppCompatFragment implements View.OnClic
                     if (data.getData() != null) {
                         Log.d(TAG, "DataPath " + data.getData().getPath());
                         presenter.onRequestPhotoOfGallery(data.getData());
+                        setPhotoProfile();
                     }
                     break;
                 case REQUEST_PHOTO:
-                    picasso.load(R.drawable.image_man).into(photoProfile);
+                    photoProfile.setImageResource(R.drawable.image_man);
                     break;
             }
         }
@@ -106,10 +105,9 @@ public class ProfileFragment extends MvpAppCompatFragment implements View.OnClic
 
     @Override
     public void setPhotoProfile() {
-        picasso.load("file://" + getContext().getFilesDir() + "/"
-                + resources.getString(R.string.file_name_for_profile))
-                .placeholder(R.drawable.image_man)
-                .into(photoProfile);
+        photoProfile.setImageBitmap(BitmapFactory.decodeFile(
+                getContext().getFilesDir() + "/" +
+                        resources.getString(R.string.file_name_for_profile)));
     }
 
     @Override
