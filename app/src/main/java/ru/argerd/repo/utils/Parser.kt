@@ -1,16 +1,14 @@
 package ru.argerd.repo.utils
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import ru.argerd.repo.App
 import ru.argerd.repo.model.pojo.Category
 import ru.argerd.repo.model.pojo.Event
-import javax.inject.Inject
 
-class Parser @Inject constructor() {
+class Parser(private val context: Context) {
     private val categoriesType = object : TypeToken<List<Category>>() {}.type
     private val eventsType = object : TypeToken<List<Event>>() {}.type
-    private val context = App.context
 
     fun getCategories(): List<Category> {
         val json: String
@@ -20,7 +18,6 @@ class Parser @Inject constructor() {
         } catch (e: Exception) {
             return arrayListOf()
         }
-
         return Gson().fromJson<ArrayList<Category>>(json, categoriesType)
     }
 

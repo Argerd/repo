@@ -4,10 +4,10 @@ import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import ru.argerd.repo.model.pojo.Category
 import ru.argerd.repo.model.repository.CategoriesRepository
-import ru.argerd.repo.model.repository.CategoriesRepositoryImpl
 
-class CategoriesScreenInteractorImpl : CategoriesScreenInteractor {
-    private val repository: CategoriesRepository = CategoriesRepositoryImpl()
+class CategoriesScreenInteractorImpl(
+        private val repository: CategoriesRepository
+) : CategoriesScreenInteractor {
 
     override fun getCategoriesFromNetwork(): Flowable<List<Category>> {
         return repository.getCategoriesFromNetwork()

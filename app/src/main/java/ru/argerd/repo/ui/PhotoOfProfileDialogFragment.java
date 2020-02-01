@@ -29,6 +29,7 @@ import ru.argerd.repo.views.PhotoOfProfileDialogView;
 
 public class PhotoOfProfileDialogFragment extends MvpAppCompatDialogFragment
         implements View.OnClickListener, PhotoOfProfileDialogView {
+
     private static final String TAG = "DialogFragment";
     static final int REQUEST_PHOTO_GALLERY = 2;
     static final int REQUEST_PHOTO_CAMERA = 1;

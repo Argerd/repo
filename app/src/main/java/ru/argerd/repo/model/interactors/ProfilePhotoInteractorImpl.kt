@@ -1,10 +1,11 @@
 package ru.argerd.repo.model.interactors
 
 import android.net.Uri
-import ru.argerd.repo.model.repository.ProfilePhotoRepositoryImpl
+import ru.argerd.repo.model.repository.ProfilePhotoRepository
 
-class ProfilePhotoInteractorImpl : ProfilePhotoInteractor {
-    private val repository = ProfilePhotoRepositoryImpl()
+class ProfilePhotoInteractorImpl(
+        private val repository: ProfilePhotoRepository
+) : ProfilePhotoInteractor {
 
     override fun saveProfilePhotoToFile(uri: Uri): Boolean {
         return repository.saveProfilePhoto(uri)

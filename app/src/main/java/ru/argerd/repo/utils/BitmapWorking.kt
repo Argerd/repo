@@ -1,17 +1,19 @@
 package ru.argerd.repo.utils
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import ru.argerd.repo.App.Companion.context
 import ru.argerd.repo.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-class BitmapWorking {
+class BitmapWorking(
+        private val context: Context
+) {
     fun saveBitmapToFileFromGallery(data: Uri): Boolean {
         val bitmap: Bitmap?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

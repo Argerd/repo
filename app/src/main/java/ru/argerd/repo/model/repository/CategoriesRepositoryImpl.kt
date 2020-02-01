@@ -2,19 +2,23 @@ package ru.argerd.repo.model.repository
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import ru.argerd.repo.App
-import ru.argerd.repo.di.DaggerAppComponent
+import ru.argerd.repo.model.database.CategoryDao
 import ru.argerd.repo.model.pojo.Category
+import ru.argerd.repo.model.retrofit.NetworkApi
+import ru.argerd.repo.utils.Parser
 
-class CategoriesRepositoryImpl : CategoriesRepository {
-    private val parser = DaggerAppComponent.create().getParser()
+class CategoriesRepositoryImpl(
+        private val parser: Parser,
+        private val database: CategoryDao,
+        private val api: NetworkApi
+) : CategoriesRepository {
 
     override fun getCategoriesFromNetwork(): Flowable<List<Category>> {
-        return App.api.getCategories()
+        return api.getCategories()
     }
 
     override fun getCategoriesFromDatabase(): Flowable<List<Category>> {
-        return App.database.categoryDao.getCategories()
+        return database.getCategories()
     }
 
     override fun getCategoriesFromFile(): Flowable<List<Category>> {
@@ -23,10 +27,10 @@ class CategoriesRepositoryImpl : CategoriesRepository {
     }
 
     override fun insertListOfCategory(list: List<Category>) {
-        App.database.categoryDao.insertListCategories(list)
+        database.insertListCategories(list)
     }
 
     override fun deleteCategories() {
-        App.database.categoryDao.deleteAllCategories()
+        database.deleteAllCategories()
     }
 }

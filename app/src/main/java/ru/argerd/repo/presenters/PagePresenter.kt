@@ -7,14 +7,15 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import moxy.InjectViewState
 import moxy.MvpPresenter
+import ru.argerd.repo.App
 import ru.argerd.repo.model.pojo.Event
-import ru.argerd.repo.utils.Parser
 import ru.argerd.repo.views.PageView
 import java.util.*
 
 @InjectViewState
 class PagePresenter : MvpPresenter<PageView>() {
     private lateinit var disposable: Disposable
+    private val parser = App.component.getParser()
 
     fun onSearch(search: Observable<CharSequence>) {
         search.switchMap { seq ->
@@ -26,7 +27,7 @@ class PagePresenter : MvpPresenter<PageView>() {
     }
 
     private fun getSearchResult(input: String): List<String?>? {
-        val events: List<Event> = Parser().getEvents()
+        val events: List<Event> = App.component.getParser().getEvents()
         val result: MutableList<String?> = ArrayList()
         for (i in events.indices) {
             events[i].name?.let {

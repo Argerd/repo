@@ -6,14 +6,13 @@ import io.reactivex.subscribers.DisposableSubscriber
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.App
-import ru.argerd.repo.model.interactors.CategoriesScreenInteractorImpl
 import ru.argerd.repo.model.pojo.Category
 import ru.argerd.repo.ui.CategoriesOfHelpFragment
 import ru.argerd.repo.views.CategoriesView
 
 @InjectViewState
 class CategoriesPresenter : MvpPresenter<CategoriesView>() {
-    private val interactor = CategoriesScreenInteractorImpl()
+    private val interactor = App.component.getCategoriesInteractor()
 
     private companion object {
         private val TAG = CategoriesOfHelpFragment::class.java.name

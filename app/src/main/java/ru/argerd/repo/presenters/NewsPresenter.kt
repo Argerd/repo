@@ -6,13 +6,12 @@ import io.reactivex.subscribers.DisposableSubscriber
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.App
-import ru.argerd.repo.model.interactors.EventsInteractorImpl
 import ru.argerd.repo.model.pojo.Event
 import ru.argerd.repo.views.NewsView
 
 @InjectViewState
 class NewsPresenter : MvpPresenter<NewsView>() {
-    private val interactor = EventsInteractorImpl()
+    private val interactor = App.component.getEventsInteractor()
 
     fun showList() {
         if (App.firstOpenEventsNews) {

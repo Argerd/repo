@@ -2,12 +2,14 @@ package ru.argerd.repo.model.repository
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import ru.argerd.repo.App
-import ru.argerd.repo.di.DaggerAppComponent
+import ru.argerd.repo.model.database.EventsDao
 import ru.argerd.repo.model.pojo.Event
+import ru.argerd.repo.utils.Parser
 
-class EventsRepositoryImpl : EventsRepository {
-    private val parser = DaggerAppComponent.create().getParser()
+class EventsRepositoryImpl(
+        private val parser: Parser,
+        private val database: EventsDao
+) : EventsRepository {
 
     /**
      * Events будут парситься из файла, так как обращение к ресурсу в Интернете невыполнимо
@@ -18,14 +20,14 @@ class EventsRepositoryImpl : EventsRepository {
     }
 
     override fun getEventsFromDatabase(): Flowable<List<Event>> {
-        return App.database.eventDao.getAllEvents()
+        return database.getAllEvents()
     }
 
     override fun deleteEvents() {
-        App.database.eventDao.deleteAllEvents()
+        database.deleteAllEvents()
     }
 
     override fun insertListEvents(list: List<Event>) {
-        App.database.eventDao.insertListEvents(list)
+        database.insertListEvents(list)
     }
 }

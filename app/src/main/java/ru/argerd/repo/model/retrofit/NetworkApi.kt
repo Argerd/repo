@@ -1,4 +1,4 @@
-package ru.argerd.repo.model
+package ru.argerd.repo.model.retrofit
 
 import io.reactivex.Flowable
 import retrofit2.http.GET

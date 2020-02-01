@@ -26,15 +26,12 @@ import moxy.presenter.InjectPresenter;
 import ru.argerd.repo.R;
 import ru.argerd.repo.adapters.AdapterFriends;
 import ru.argerd.repo.presenters.ProfilePresenter;
-import ru.argerd.repo.utils.BitmapWorking;
 import ru.argerd.repo.views.ProfileView;
 
 public class ProfileFragment extends MvpAppCompatFragment implements View.OnClickListener,
         ProfileView {
     private static final String TAG = ProfileFragment.class.toString();
     private static final int REQUEST_PHOTO = 11;
-
-    private BitmapWorking bitmapWorking = new BitmapWorking();
 
     private ImageView photoProfile;
     private Resources resources;

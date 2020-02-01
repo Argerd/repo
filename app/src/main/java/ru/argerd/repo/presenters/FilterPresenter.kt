@@ -7,15 +7,15 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 import ru.argerd.repo.App
 import ru.argerd.repo.model.pojo.Category
-import ru.argerd.repo.utils.SharedPreferencesManager
 import ru.argerd.repo.views.FilterView
 
 @InjectViewState
 class FilterPresenter : MvpPresenter<FilterView>() {
-    private val sharedPreferencesManager = SharedPreferencesManager()
+    private val sharedPreferencesManager = App.component.getSharedPreferences()
+    private val interactor = App.component.getCategoriesInteractor()
 
     fun showList() {
-        App.database.categoryDao.getCategories()
+        interactor.getCategoriesFromDatabase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : DisposableSubscriber<List<Category>>() {
