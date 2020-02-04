@@ -3,8 +3,8 @@ package ru.argerd.repo.utils
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import ru.argerd.repo.model.pojo.Category
-import ru.argerd.repo.model.pojo.Event
+import ru.argerd.repo.data.model.Category
+import ru.argerd.repo.data.model.Event
 
 class Parser(private val context: Context) {
     private val categoriesType = object : TypeToken<List<Category>>() {}.type
