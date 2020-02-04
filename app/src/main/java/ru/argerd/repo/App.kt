@@ -3,8 +3,8 @@ package ru.argerd.repo
 import android.app.Application
 import android.content.Context
 import com.jakewharton.threetenabp.AndroidThreeTen
-import ru.argerd.repo.di.AppComponent
-import ru.argerd.repo.di.DaggerAppComponent
+import ru.argerd.repo.di.component.AppComponent
+import ru.argerd.repo.di.component.DaggerAppComponent
 
 class App : Application() {
 

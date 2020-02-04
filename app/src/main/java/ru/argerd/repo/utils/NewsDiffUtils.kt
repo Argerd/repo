@@ -1,7 +1,7 @@
 package ru.argerd.repo.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.argerd.repo.model.pojo.Event
+import ru.argerd.repo.data.model.Event
 
 internal class NewsDiffUtils(
         private val oldList: List<Event>?,

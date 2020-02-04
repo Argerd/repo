@@ -7,7 +7,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.argerd.repo.R
-import ru.argerd.repo.model.pojo.Category
+import ru.argerd.repo.data.model.Category
 
 class AdapterFilter(private val onSwitchCategory: (isChecked: Boolean,
                                                    nameOfCategories: String) -> Unit)

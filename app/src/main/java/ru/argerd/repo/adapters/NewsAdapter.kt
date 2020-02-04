@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.argerd.repo.R
-import ru.argerd.repo.model.pojo.Event
+import ru.argerd.repo.data.model.Event
 
 internal class NewsAdapter
     : RecyclerView.Adapter<NewsAdapter.Holder>() {
