@@ -20,6 +20,7 @@ import moxy.presenter.InjectPresenter
 import ru.argerd.repo.R
 import ru.argerd.repo.adapters.AdapterFriends
 import ru.argerd.repo.screens.profile.dialogue.PhotoOfProfileDialogFragment
+import java.io.File
 
 class ProfileFragment : MvpAppCompatFragment(), View.OnClickListener, ProfileView {
     private lateinit var photoProfile: ImageView
@@ -50,7 +51,14 @@ class ProfileFragment : MvpAppCompatFragment(), View.OnClickListener, ProfileVie
         photoProfile = view.findViewById(R.id.photo_profile)
         photoProfile.setOnClickListener(this)
 
-        setPhotoProfile()
+        val file = File(context!!.filesDir.toString() + "/" +
+                resources.getString(R.string.file_name_for_profile))
+        if (file.exists()) {
+            setPhotoProfile()
+        } else {
+            photoProfile.setImageResource(R.drawable.image_man)
+        }
+
         return view
     }
 
